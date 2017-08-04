@@ -20,7 +20,7 @@
 
 ## 实现原理
 
-众所周知，所有的手势都是基于浏览器原生事件`touchstart`, `touchmove`, `touchend`, `touchcancel`进行的上层封装，因此封装的思路是通过一个个相互独立的事件回调仓库`handleBus`，然后在原生`touch`事件中符合条件的时机触发并传出计算后的参数值，完成手势的操作。实现原理较为简单清晰，先不急，我们先来理清一些使用到的数学概念并结合代码，将数学运用到实际问题中。
+众所周知，所有的手势都是基于浏览器原生事件`touchstart`, `touchmove`, `touchend`, `touchcancel`进行的上层封装，因此封装的思路是通过一个个相互独立的事件回调仓库`handleBus`，然后在原生`touch`事件中符合条件的时机触发并传出计算后的参数值，完成手势的操作。实现原理较为简单清晰，先不急，我们先来理清一些使用到的数学概念并结合代码，将数学运用到实际问题中，数学部分可能会比较枯燥，但希望大家坚持读完，相信会收益良多。
 
 ## 基础数学知识函数
 
@@ -221,19 +221,19 @@ _eventFire('drag', {
 上图是双指缩放的模拟图，双指由`a`向量放大到`b`向量，通过初始状态时的`a`向量的模与`touchmove`中获取的`b`向量的模进行计算，便可得出缩放值：
 
 ```js
-	// touchstart中计算初始双指的向量模；
-	let vector1 = getVector(secondPoint, startPoint);
-	let pinchStartLength = getLength(vector1);
+// touchstart中计算初始双指的向量模；
+let vector1 = getVector(secondPoint, startPoint);
+let pinchStartLength = getLength(vector1);
 	
-	// touchmove中计算实时的双指向量模；
-	let vector2 = getVector(curSecPoint, curPoint);
-	let pinchLength = getLength(vector2);
-	this._eventFire('pinch', {
-		delta: {
-		    scale: pinchLength / pinchStartLength,
-		},
-		origin: ev,
-	});
+// touchmove中计算实时的双指向量模；
+let vector2 = getVector(curSecPoint, curPoint);
+let pinchLength = getLength(vector2);
+this._eventFire('pinch', {
+	delta: {
+	    scale: pinchLength / pinchStartLength,
+	},
+	origin: ev,
+});
 ```
 
 
@@ -323,15 +323,15 @@ this._eventFire('singleRotate', {
 由于`touchmove`事件是个高频率的实时触发事件，一个拖动操作，其实触发了N次的`touchmove`事件，因此计算出来的值只是一种增量，即代表的是一次 `touchmove`事件增加的值，只代表一段很小的值，并不是最终的结果值，因此需要由`mtouch.js`外部维护一个位置数据，类似于:
 
 ```js
-	//	真实位置数据；
-	let dragTrans = {x = 0,y = 0};
+//	真实位置数据；
+let dragTrans = {x = 0,y = 0};
 
-	// 累加上 mtouch 所传递出的增量 deltaX 与 deltaY;
-	dragTrans.x += ev.delta.deltaX;
-	dragTrans.y += ev.delta.deltaY;
+// 累加上 mtouch 所传递出的增量 deltaX 与 deltaY;
+dragTrans.x += ev.delta.deltaX;
+dragTrans.y += ev.delta.deltaY;
 	
-	// 通过 transform 直接操作元素；
-	set($drag,dragTrans);
+// 通过 transform 直接操作元素；
+set($drag,dragTrans);
 ```
 
 ### 初始位置
@@ -355,36 +355,30 @@ let initTrans = _.matrixTo(cssTrans);
 
 ## 结语
 
-感谢大家看到这里，相信大家对手势的原理已经有了基础的了解了，基于这些原理，我们可以再封装出更多的手势，例如双击，长按，扫动，甚至更酷炫的三指、四指操作等，让应用拥有更多人性化的特质。
+至此，相信大家对手势的原理已经有基础的了解，基于这些原理，我们可以再封装出更多的手势，例如双击，长按，扫动，甚至更酷炫的三指、四指操作等，让应用拥有更多人性化的特质。
 
-另外安利下小弟基于这些所封装的几个小工具，欢迎大佬们宠幸：
+基于以上原理，我封装了几个常见的工具：（求star -.-）
 
-> Tips: 因为只针对移动端，因此麻烦使用移动端打开`demo`，或者pc端开启调试模拟模式！
+> Tips: 因为只针对移动端，需在移动设备中打开`demo`，或者pc端开启mobile调试模式！
 
-- mtouch.js : 移动端的手势库，封装了上述的五种手势，性能不错且使用方便，已经运用于多个项目中了。
-
+1. mtouch.js : 移动端的手势库，封装了上述的五种手势，精简的api设计，涵盖了常见的手势交互，基于此也可以很方便的进行扩展。
 **[demo](http://f2er.meitu.com/gxd/mtouch/example/index.html)
 [github](https://github.com/xd-tayde/mtouch)**
 
-- touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。
-
+2. touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。
 **[demo](http://f2er.meitu.com/gxd/touchkit/example/index.html)** **[github](https://github.com/xd-tayde/touchkit)**
 
-- mcanvas.js : 图片合成工具，封装了原生`canvas`接口，一键导出合成后的图片，轻松使用，省去所有计算。
-
+3. mcanvas.js : 基于canvas 开放极简的api实现图片<段落文字> <混排文字> <裁剪> <平移> <旋转> <缩放> <水印添加> 一键导出等。
 **[demo](http://f2er.meitu.com/gxd/mcanvas/example/index.html)** **[github](https://github.com/xd-tayde/mcanvas)**
 
 
-最后，首先感谢ZHY,没有他就没有这篇文章，另外感谢几位大神，在写本文的期间，从他们的文章中受益良多；
+## 致谢
 
-- 张鑫旭大神：
-	- [获取元素CSS值之getComputedStyle方法熟悉](http://www.zhangxinxu.com/wordpress/2012/05/getcomputedstyle-js-getpropertyvalue-currentstyle/)
-	- [理解CSS3 transform中的Matrix(矩阵)](http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/)
-- AlloyTeam团队的`AlloyFinger`，我是Alloy的粉丝。~~\*_\*!
-- hcysunyangd大神：
-	- [从矩阵与空间操作的关系理解CSS3的transform](https://juejin.im/post/5916851444d904006c5538f8)
-- 数学文章：
-	- [线性代数的理解 学完再看觉得自己弱爆了](http://www.360doc.com/content/14/1112/00/202378_424428214.shtml)
+- 张鑫旭： [获取元素CSS值之getComputedStyle方法熟悉](http://www.zhangxinxu.com/wordpress/2012/05/getcomputedstyle-js-getpropertyvalue-currentstyle/)
+- 张鑫旭：[理解CSS3 transform中的Matrix(矩阵)](http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/)
+- AlloyTeam团队的`AlloyFinger`
+- hcysunyangd： [从矩阵与空间操作的关系理解CSS3的transform](https://juejin.im/post/5916851444d904006c5538f8)
+- [线性代数的理解 学完再看觉得自己弱爆了](http://www.360doc.com/content/14/1112/00/202378_424428214.shtml)
 
 
 

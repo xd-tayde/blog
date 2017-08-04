@@ -360,12 +360,17 @@ let initTrans = _.matrixTo(cssTrans);
 另外安利下小弟基于这些所封装的几个小工具，欢迎大佬们宠幸：
 
 - mtouch.js : 移动端的手势库，封装了上述的五种手势，性能不错且使用方便，已经运用于多个项目中了。
+
 **[demo](http://f2er.meitu.com/gxd/mtouch/example/index.html)
 [github](https://github.com/xd-tayde/mtouch)**
 
-- touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。**[demo]()** **[github]()**
+- touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。
 
-- mcanvas.js : 图片合成工具，封装了原生`canvas`接口，一键导出合成后的图片，轻松使用，省去所有计算~~**[demo]()** **[github]()**
+**[demo]()** **[github]()**
+
+- mcanvas.js : 图片合成工具，封装了原生`canvas`接口，一键导出合成后的图片，轻松使用，省去所有计算。
+
+**[demo]()** **[github]()**
 
 
 最后，感谢几位大神，在写本文的期间，从他们的文章中受益良多；

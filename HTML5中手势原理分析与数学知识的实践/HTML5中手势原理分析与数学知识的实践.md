@@ -359,6 +359,8 @@ let initTrans = _.matrixTo(cssTrans);
 
 另外安利下小弟基于这些所封装的几个小工具，欢迎大佬们宠幸：
 
+> Tips: 因为只针对移动端，因此麻烦使用移动端打开`demo`，或者pc端开启调试模拟模式！
+
 - mtouch.js : 移动端的手势库，封装了上述的五种手势，性能不错且使用方便，已经运用于多个项目中了。
 
 **[demo](http://f2er.meitu.com/gxd/mtouch/example/index.html)
@@ -366,14 +368,14 @@ let initTrans = _.matrixTo(cssTrans);
 
 - touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。
 
-**[demo]()** **[github]()**
+**[demo](http://f2er.meitu.com/gxd/touchkit/example/index.html)** **[github](https://github.com/xd-tayde/touchkit)**
 
 - mcanvas.js : 图片合成工具，封装了原生`canvas`接口，一键导出合成后的图片，轻松使用，省去所有计算。
 
-**[demo]()** **[github]()**
+**[demo](http://f2er.meitu.com/gxd/mcanvas/example/index.html)** **[github](https://github.com/xd-tayde/mcanvas)**
 
 
-最后，感谢几位大神，在写本文的期间，从他们的文章中受益良多；
+最后，首先感谢ZHY,没有他就没有这篇文章，另外感谢几位大神，在写本文的期间，从他们的文章中受益良多；
 
 - 张鑫旭大神：
 	- [获取元素CSS值之getComputedStyle方法熟悉](http://www.zhangxinxu.com/wordpress/2012/05/getcomputedstyle-js-getpropertyvalue-currentstyle/)
@@ -382,9 +384,7 @@ let initTrans = _.matrixTo(cssTrans);
 - hcysunyangd大神：
 	- [从矩阵与空间操作的关系理解CSS3的transform](https://juejin.im/post/5916851444d904006c5538f8)
 - 数学文章：
-	- [线性代数的理解 学完再看觉得自己弱爆了](http://www.360doc.com/content/14/1112/00/202378_424428214.shtml)	
-- ZHY大神
-	- 没有他就没有这篇博文。
+	- [线性代数的理解 学完再看觉得自己弱爆了](http://www.360doc.com/content/14/1112/00/202378_424428214.shtml)
 
 
 

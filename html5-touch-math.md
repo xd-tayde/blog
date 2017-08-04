@@ -26,41 +26,41 @@
 
 我们常见的坐标系属于线性空间，或称向量空间(Vector Space)。这个空间是一个由点(Point) 和 向量(Vector) 所组成集合；
 
-### 点(Point) 
+### 点(Point)
 可以理解为我们的坐标点,例如原点`O(0,0),A(-1,2)`，通过原生事件对象的`touches`可以获取触摸点的坐标，参数`index`代表第几接触点；
 
 <div align='center'>
-	<img src="./getPoint.png" width = "400" align=center /><br/>
+	<img src="./images/html5-touch-math/getPoint.png" width = "400" align=center /><br/>
 </div>
-	
+
 ### 向量(Vector)
 是坐标系中一种 **既有大小也有方向的线段**，例如由原点`O(0,0)`指向点`A(1,1)`的箭头线段，称为向量`a`，则`a=(1-0,1-0)=(1,1)`;
 
 如下图所示，其中`i`与`j`向量称为该坐标系的单位向量，也称为基向量，我们常见的坐标系单位为`1`,即`i=(1,0)；j=(0,1)`；
 
 <div align='center'>
-	<img src="./vector.png" width = "250" align=center /><br/>
+	<img src="./images/html5-touch-math/vector.png" width = "250" align=center /><br/>
 </div>
-	 
+
 获取向量的函数：
 <div align='center'>
-	<img src="./getVector.png" width = "400" /><br/>
+	<img src="./images/html5-touch-math/getVector.png" width = "400" /><br/>
 </div>
 
 ### 向量模
 
 代表 **向量的长度**，记为`|a|`，是一个标量，只有大小，没有方向;
- 
+
 几何意义代表的是以`x,y`为直角边的直角三角形的斜边，通过勾股定理进行计算；
 
 <div align='center'>
-	<img src="./mo.png" width = "300" align=center /><br/> 
+	<img src="./images/html5-touch-math/mo.png" width = "300" align=center /><br/> 
 </div>
 
 `getLength`函数：
 
 <div align='center'>
-	<img src="./getLength.png" width = "400" align=center /><br/> 
+	<img src="./images/html5-touch-math/getLength.png" width = "400" align=center /><br/> 
 </div>
 
 ### 向量的数量积
@@ -84,7 +84,7 @@
 然后通过共线定理我们可以判断出旋转的方向，函数定义为：
 
 <div align='center'>
-	<img src="./getAngle.png" width = "400" align=center /><br/>
+	<img src="./images/html5-touch-math/getAngle.png" width = "400" align=center /><br/>
 </div>
 
 ### 矩阵与变换
@@ -93,17 +93,17 @@
 
 > 我们用向量来刻画对象，而矩阵便是用来描述对象的运动；
 
-#### 而矩阵是如何描述运动的呢? 
+#### 而矩阵是如何描述运动的呢?
 
-我们知道，通过一个坐标系基向量便可以确定一个向量，例如 `a=(-1,2)`,我们通常约定的基向量是 i = <img src="./1-0.png" height = "40" /> 与 j = <img src="./0-1.jpg" height = "40" />； 因此:
+我们知道，通过一个坐标系基向量便可以确定一个向量，例如 `a=(-1,2)`,我们通常约定的基向量是 i = <img src="./images/html5-touch-math/1-0.png" height = "40" /> 与 j = <img src="./images/html5-touch-math/0-1.jpg" height = "40" />； 因此:
 
-> a = -1i + 2j = -1 <img src="./1-0.png" height = "40" /> + 2 <img src="./0-1.jpg" height = "40" />  = <img src="./-1-0-0-2.jpg" height = "40" /> = <img src="./-1-2.png" height = "40" />;
+> a = -1i + 2j = -1 <img src="./images/html5-touch-math/1-0.png" height = "40" /> + 2 <img src="./images/html5-touch-math/0-1.jpg" height = "40" />  = <img src="./images/html5-touch-math/-1-0-0-2.jpg" height = "40" /> = <img src="./images/html5-touch-math/-1-2.png" height = "40" />;
 
 而矩阵变换的，其实便是通过矩阵转换了基向量，从而完成了向量的变换；
 
-例如上面的栗子，把`a`向量通过矩阵 <img src="./1-3-2-0.jpg" height = "40" />进行变换，此时基向量`i`由 `(1,0)`变换成`(1,-2)`与`j`由`(0,1)`变换成`(3,0)`,沿用上面的推导，则
+例如上面的栗子，把`a`向量通过矩阵 <img src="./images/html5-touch-math/1-3-2-0.jpg" height = "40" />进行变换，此时基向量`i`由 `(1,0)`变换成`(1,-2)`与`j`由`(0,1)`变换成`(3,0)`,沿用上面的推导，则
 
-> a = -1i + 2j = -1<img src="./-1-2.png" height = "40" /> + 2<img src="./3-0.jpg" height = "40" /> = <img src="./-1-6-2-0.jpg" height = "40" /> = <img src="./5-2.jpg" height = "40" />
+> a = -1i + 2j = -1<img src="./images/html5-touch-math/-1-2.png" height = "40" /> + 2<img src="./images/html5-touch-math/3-0.jpg" height = "40" /> = <img src="./images/html5-touch-math/-1-6-2-0.jpg" height = "40" /> = <img src="./images/html5-touch-math/5-2.jpg" height = "40" />
 
 如下图所示：
 A图表示变换之前的坐标系，此时`a=(-1,2)`，通过矩阵变换后，基向量`i，j`的变换引起了坐标系的变换，变成了下图B，因此`a`向量由`(-1,2)`变换成了`(5,-2)`；
@@ -111,7 +111,7 @@ A图表示变换之前的坐标系，此时`a=(-1,2)`，通过矩阵变换后，
 > 其实向量与坐标系的关联不变(`a = -1i+2j`)，是基向量引起坐标系变化，然后坐标系沿用关联导致了向量的变化；
 
 <div align='center'>
-	<img src="./matrix-trans.png" width = "600" align=center /><br/>
+	<img src="./images/html5-touch-math/matrix-trans.png" width = "600" align=center /><br/>
 该图片引用自hcysunyang的文章<br>(https://juejin.im/post/5916851444d904006c5538f8),感恩！
 </div>
 
@@ -122,26 +122,26 @@ A图表示变换之前的坐标系，此时`a=(-1,2)`，通过矩阵变换后，
 通常在二维坐标系中，只需要 2X2 的矩阵便足以描述所有的变换了， 但由于CSS是处于3D环境中的，因此CSS中使用的是 3X3 的矩阵，表示为：
 
 <div align='center'>
-	<img src="./matrix.png" width = "150" align=center /><br/>
+	<img src="./images/html5-touch-math/matrix.png" width = "150" align=center /><br/>
 </div>
 
 其中第三行的`0,0,1`代表的就是`z`轴的默认参数。这个矩阵中，`(a,b)` 即为坐标轴的 `i`基，而`(c,d)`既为`j`基,`e`为`x`轴的偏移量,`f`为`y`轴的偏移量;因此上栗便很好理解，**`translate`并没有导致`i，j`基改变，只是发生了偏移**，因此`translate(-30px,-30px) ==> matrix(1,0,0,1,30,30)`~
 
 所有的`transform`语句，都会发生对应的转换，如下：
-	
+
 	// 发生偏移，但基向量不变；
-	transform:translate(x,y) ==> transform:matrix(1,0,0,1,x,y) 
+	transform:translate(x,y) ==> transform:matrix(1,0,0,1,x,y)
 
 	// 基向量旋转；
 	transform:rotate(θdeg)==> transform:matrix(cos(θ·π/180),sin(θ·π/180),-sin(θ·π/180),cos(θ·π/180),0,0)
-	
+
 	// 基向量放大且方向不变；
 	transform:scale(s) ==> transform:matrix(s,0,0,s,0,0)
-	
+
 `translate/rotate/scale`等语法十分强大，让我们的代码更为可读且方便书写，但是`matrix`有着更强大的转换特性，通过`matrix`，可以发生任何方式的变换，例如我们常见的**镜像对称**，`transform:matrix(-1,0,0,1,0,0)`;
 
 <div align='center'>
-	<img src="./flipover.png" width = "350" align=center /><br/>
+	<img src="./images/html5-touch-math/flipover.png" width = "350" align=center /><br/>
 </div>
 
 #### MatrixTo
@@ -163,7 +163,7 @@ A图表示变换之前的坐标系，此时`a=(-1,2)`，通过矩阵变换后，
 将两个不等式相除，即可以轻松求出`θ`和`s`了，perfect！！函数如下：
 
 <div align='center'>
-	<img src="./matrixTo.png" width = "600" align=center /><br/>
+	<img src="./images/html5-touch-math/matrixTo.png" width = "600" align=center /><br/>
 </div>
 
 ## 手势原理
@@ -184,7 +184,7 @@ A图表示变换之前的坐标系，此时`a=(-1,2)`，通过矩阵变换后，
 ### Drag(拖动事件)
 
 <div align='center'>
-	<img src="./drag.png" width = "300" align=center /><br/>
+	<img src="./images/html5-touch-math/drag.png" width = "300" align=center /><br/>
 </div>
 
 上图是模拟了拖动手势，由`A`点移动到`B`点，我们要计算的便是这个过程的偏移量；
@@ -208,14 +208,14 @@ _eventFire('drag', {
     },
     origin: ev,
 });
-```	
+```
 
 > Tips: `fire`函数即遍历执行`drag`事件对应的回调仓库即可；
 
 ### Pinch(双指缩放)
 
 <div align='center'>
-	<img src="./pinch.png" width = "300" align=center /><br/>
+	<img src="./images/html5-touch-math/pinch.png" width = "300" align=center /><br/>
 </div>
 
 上图是双指缩放的模拟图，双指由`a`向量放大到`b`向量，通过初始状态时的`a`向量的模与`touchmove`中获取的`b`向量的模进行计算，便可得出缩放值：
@@ -224,7 +224,7 @@ _eventFire('drag', {
 // touchstart中计算初始双指的向量模；
 let vector1 = getVector(secondPoint, startPoint);
 let pinchStartLength = getLength(vector1);
-	
+
 // touchmove中计算实时的双指向量模；
 let vector2 = getVector(curSecPoint, curPoint);
 let pinchLength = getLength(vector2);
@@ -240,7 +240,7 @@ this._eventFire('pinch', {
 ### Rotate(双指旋转)
 
 <div align='center'>
-	<img src="./rotate.png" width = "300" align=center /><br/>
+	<img src="./images/html5-touch-math/rotate.png" width = "300" align=center /><br/>
 </div>
 
 初始时双指向量`a`，旋转到`b`向量，`θ`便是我们需要的值，因此只要通过我们上面构建的`getAngle`函数，便可求出旋转的角度：
@@ -264,13 +264,13 @@ this._eventFire('rotate', {
 ### singlePinch(单指缩放)
 
 <div align='center'>
-	<img src="./singlePinch.png" width = "300" align=center /><br/>
+	<img src="./images/html5-touch-math/singlePinch.png" width = "300" align=center /><br/>
 </div>
 
 与上面的手势不同，单指缩放和单指旋转都需要多个特有概念：
 
 > 操作元素(`operator`)：需要操作的元素。上面三个手势其实并不关心操作元素，因为单纯靠手势自身，便能计算得出正确的参数值，而单指缩放和旋转需要依赖于操作元素的基准点(操作元素的中心点)进行计算；
-> 
+>
 > 按钮：因为单指的手势与拖动(drag)手势是相互冲突的，需要一种特殊的交互方式来进行区分，这里是通过特定的区域来区分，类似于一个按钮，当在按钮上操作时，是单指缩放或者旋转，而在按钮区域外，则是常规的拖动，实践证明，这是一个用户很容易接受且体验较好的操作方式；
 
 图中由`a`向量单指放大到`b`向量，对操作元(正方形)素进行了中心放大，此时缩放值即为`b`向量的模 / `a`向量的模；
@@ -299,7 +299,7 @@ this._eventFire('singlePinch', {
 ### singleRotate(单指旋转)
 
 <div align='center'>
-	<img src="./singleRotate.png" width = "300" align=center /><br/>
+	<img src="./images/html5-touch-math/singleRotate.png" width = "300" align=center /><br/>
 </div>
 
 结合单指缩放和双指旋转，可以很简单的知道 `θ`便是我们需要的旋转角度；
@@ -329,7 +329,7 @@ let dragTrans = {x = 0,y = 0};
 // 累加上 mtouch 所传递出的增量 deltaX 与 deltaY;
 dragTrans.x += ev.delta.deltaX;
 dragTrans.y += ev.delta.deltaY;
-	
+
 // 通过 transform 直接操作元素；
 set($drag,dragTrans);
 ```
@@ -379,19 +379,3 @@ let initTrans = _.matrixTo(cssTrans);
 - AlloyTeam团队的`AlloyFinger`
 - hcysunyangd： [从矩阵与空间操作的关系理解CSS3的transform](https://juejin.im/post/5916851444d904006c5538f8)
 - [线性代数的理解 学完再看觉得自己弱爆了](http://www.360doc.com/content/14/1112/00/202378_424428214.shtml)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	

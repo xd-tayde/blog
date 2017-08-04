@@ -13,13 +13,13 @@
 
 - [CSS学习笔记](./basis/CSS学习笔记.md)
 
-- [JavaScript语言编程核心（一）— 对象](./basis/JavaScript语言编程核心（一）— 对象.md)
+- [JavaScript语言编程核心(一)—对象](./basis/JavaScript语言编程核心(一)—对象.md)
 
-- [JavaScript语言编程核心（二）— 代码的复用模式](./basis/JavaScript语言编程核心（二）— 代码的复用模式.md)
+- [JavaScript语言编程核心(二)—代码的复用模式](./basis/JavaScript语言编程核心(二)—代码的复用模式.md)
 
-- [JavaScript语言编程核心（三）— 执行上下文与作用域](./basis/JavaScript语言编程核心（三）— 执行上下文与作用域.md)
+- [JavaScript语言编程核心(三)—执行上下文与作用域](./basis/JavaScript语言编程核心(三)—执行上下文与作用域.md)
 
-- [JavaScript语言编程核心（四）— 函数（待完成）](./basis/JavaScript语言编程核心（四）— 函数（待完成）.md)
+- [JavaScript语言编程核心(四)—函数(待完成)](./basis/JavaScript语言编程核心(四)—函数(待完成).md)
 
 - [Gulp简要入门笔记](./basis/Gulp简要入门笔记.md)
 

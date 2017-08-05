@@ -112,7 +112,7 @@ A图表示变换之前的坐标系，此时`a=(-1,2)`，通过矩阵变换后，
 
 <div align='center'>
 	<img src="./images/html5-touch-math/matrix-trans.png" width = "600" align=center /><br/>
-该图片引用自hcysunyang的文章<br>(https://juejin.im/post/5916851444d904006c5538f8),感恩！
+该图片引用自hcysunyang的文章<br>(https://juejin.im/post/5916851444d904006c5538f8)！
 </div>
 
 #### 结合代码

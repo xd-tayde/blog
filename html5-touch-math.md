@@ -16,8 +16,6 @@
 
 基于以上原理，我封装了几个常见的工具：（求star -.-）
 
-> Tips: 因为只针对移动端，需在移动设备中打开`demo`，或者pc端开启mobile调试模式！
-
 1. mtouch.js : 移动端的手势库，封装了上述的五种手势，精简的api设计，涵盖了常见的手势交互，基于此也可以很方便的进行扩展。
 **[demo](http://f2er.meitu.com/gxd/mtouch/example/index.html)
 [github](https://github.com/xd-tayde/mtouch)**
@@ -30,6 +28,8 @@
 
 > Tips :
 > 因为 `tap` 及 `swipe` 很多基础库中包含，为了轻便，因此并没有包含,但如果需要，可进行扩展;
+> 
+> 因为偏向移动端，需在移动设备中打开`demo`，或者pc端开启mobile调试模式！
 
 
 ## 实现原理

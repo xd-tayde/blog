@@ -14,6 +14,20 @@
 - 单指缩放: `singlePinch`
 - 单指旋转: `singleRotate`
 
+基于以上原理，我封装了几个常见的工具：（求star -.-）
+
+> Tips: 因为只针对移动端，需在移动设备中打开`demo`，或者pc端开启mobile调试模式！
+
+1. mtouch.js : 移动端的手势库，封装了上述的五种手势，精简的api设计，涵盖了常见的手势交互，基于此也可以很方便的进行扩展。
+**[demo](http://f2er.meitu.com/gxd/mtouch/example/index.html)
+[github](https://github.com/xd-tayde/mtouch)**
+
+2. touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。
+**[demo](http://f2er.meitu.com/gxd/touchkit/example/index.html)** **[github](https://github.com/xd-tayde/touchkit)**
+
+3. mcanvas.js : 基于`canvas`开放极简的api实现图片<段落文字> <混排文字> <裁剪> <平移> <旋转> <缩放> <水印添加> 一键导出等,便于配合，`touchkit`便使用该插件做的图片合成导出。
+**[demo](http://f2er.meitu.com/gxd/mcanvas/example/index.html)** **[github](https://github.com/xd-tayde/mcanvas)**
+
 > Tips :
 > 因为 `tap` 及 `swipe` 很多基础库中包含，为了轻便，因此并没有包含,但如果需要，可进行扩展;
 
@@ -356,20 +370,6 @@ let initTrans = _.matrixTo(cssTrans);
 ## 结语
 
 至此，相信大家对手势的原理已经有基础的了解，基于这些原理，我们可以再封装出更多的手势，例如双击，长按，扫动，甚至更酷炫的三指、四指操作等，让应用拥有更多人性化的特质。
-
-基于以上原理，我封装了几个常见的工具：（求star -.-）
-
-> Tips: 因为只针对移动端，需在移动设备中打开`demo`，或者pc端开启mobile调试模式！
-
-1. mtouch.js : 移动端的手势库，封装了上述的五种手势，精简的api设计，涵盖了常见的手势交互，基于此也可以很方便的进行扩展。
-**[demo](http://f2er.meitu.com/gxd/mtouch/example/index.html)
-[github](https://github.com/xd-tayde/mtouch)**
-
-2. touchkit.js : 基于`mtouch`所封装的一层更贴近业务的工具包，可用于制作多种手势操作业务，一键开启，一站式服务。
-**[demo](http://f2er.meitu.com/gxd/touchkit/example/index.html)** **[github](https://github.com/xd-tayde/touchkit)**
-
-3. mcanvas.js : 基于canvas 开放极简的api实现图片<段落文字> <混排文字> <裁剪> <平移> <旋转> <缩放> <水印添加> 一键导出等。
-**[demo](http://f2er.meitu.com/gxd/mcanvas/example/index.html)** **[github](https://github.com/xd-tayde/mcanvas)**
 
 
 ## 致谢

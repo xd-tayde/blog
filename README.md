@@ -4,6 +4,8 @@
 
 - [HTML5中手势原理分析与数学知识的实践](./html5-touch-math.md)
 
+- [H5的图片合成与处理(一) --- mcanvas.js](./mcanvas.md)
+
 
 ## 基础知识
 

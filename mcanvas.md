@@ -8,7 +8,11 @@
 
 **[Example](http://f2er.meitu.com/gxd/mcanvas/example/index.html)**
 
+**[中文文档](https://github.com/xd-tayde/mcanvas/blob/master/README_ZH.md)**
+
 **[Git](https://github.com/xd-tayde/mcanvas)**
+
+
 
 ## 实现：
 
@@ -21,12 +25,12 @@
 ### 创建画布,并设置背景图片
 
 ```js
-	let mc = MCanvas({
-		width: 1000,
-		height: 1000,
-	});
+let mc = MCanvas({
+	width: 1000,
+	height: 1000,
+});
 	
-	mc.background(image, options);
+mc.background(image, options);
 ```
 
 ### 在画布上绘制添加图层

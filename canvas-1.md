@@ -17,7 +17,7 @@
 
 ### **图片合成:** [Example](http://f2er.meitu.com/gxd/mcanvas/example/index.html) [Git](https://github.com/xd-tayde/mcanvas)
 
-### **图片裁剪:** [Example](http://f2er.meitu.com/hmz/imageclip/example/index.html) [Git](https://github.com/ishareme/clipimage)
+### **图片裁剪:** [Example](http://f2er.meitu.com/hmz/ClipImageDemo/example/index.html) [Git](https://github.com/ishareme/clipimage)
 
 ### **人像抠除:** [Example](http://f2er.meitu.com/gxd/matting/example/index.html) [Git](https://github.com/xd-tayde/matting)
 

@@ -15,27 +15,23 @@
 
 通过这些积累，我封装了几个项目中常用的功能：
 
-**图片合成:** [Example](http://f2er.meitu.com/gxd/mcanvas/example/index.html) [Git](https://github.com/xd-tayde/mcanvas)
+### **图片合成:** [Example](http://f2er.meitu.com/gxd/mcanvas/example/index.html) [Git](https://github.com/xd-tayde/mcanvas)
 
-**图片裁剪:** [Example](http://f2er.meitu.com/hmz/imageclip/example/index.html) [Git](https://github.com/ishareme/clipimage)
+### **图片裁剪:** [Example](http://f2er.meitu.com/hmz/imageclip/example/index.html) [Git](https://github.com/ishareme/clipimage)
 
-**人像抠除:** [Example](http://f2er.meitu.com/gxd/matting/example/index.html) [Git](https://github.com/xd-tayde/matting)
+### **人像抠除:** [Example](http://f2er.meitu.com/gxd/matting/example/index.html) [Git](https://github.com/xd-tayde/matting)
 
 唠叨完这些老套路后，我们开始起飞！~~✈️✈️✈️
 
 首先，我这里将前端图片处理暂且分成两种类型：**基础类型** 与 **算法类型**；
 
-- **基础类型的图片处理技术:** 图片缩放，旋转，添加边框，图片合成，拼图等业务都属于基础类型的图片处理，其区分点在于无需使用像素级别的算法，而是通过计算改变图片的尺寸及位置等来改造图片。
-
-例如常用的贴纸功能:
+- **基础类型的图片处理技术:** 图片缩放，旋转，添加边框，图片合成，拼图等业务都属于基础类型的图片处理，其区分点在于**无需使用像素级别的算法**，而是通过计算改变图片的**尺寸及位置**等来改造图片。例如常用的贴纸功能:
 
 <div align='center'>
 	<img src="./images/mcanvas/sticker.jpg" width = "500" align=center /><br/>
 </div>
 
-- **算法类型的图片处理:** 这类型的图片处理复杂度较高，特点是通过像素级别算法对图片的像素点进行`RGBA`通道值等进行改造，例如我们使用`photshop`或者美图秀秀等工具对图片进行的 美颜 / 滤镜 / 黑白 / 抠图 / 模糊等操作，这类型的重点主要在于算法和性能层面。
-
-例如常用的妆容功能:
+- **算法类型的图片处理:** 这类型的图片处理复杂度较高，特点是通过像素级别算法对图片的**像素点**进行`RGBA`通道值等进行改造，例如我们使用`photshop`或者美图秀秀等工具对图片进行的 美颜 / 滤镜 / 黑白 / 抠图 / 模糊等操作，这类型的重点主要在于**算法和性能**层面。例如常用的妆容功能:
 
 <div align='center'>
 	<img src="./images/mcanvas/makeup.jpg" width = "500" align=center /><br/>
@@ -50,25 +46,25 @@
 	- 为图片添加文字；
 	- 为图片添加基础几何图形；
 
-> Tips: 我已将该类型的图片处理场景封装成了一个插件，基本上能应付所有这类型图片处理的需求，**[GIT地址](https://github.com/xd-tayde/mcanvas)** (欢迎探讨);
+> Tips: 我已将该类型的图片处理场景封装成了一个**插件**，基本上能应付所有这类型图片处理的需求，**[GIT地址](https://github.com/xd-tayde/mcanvas)** (欢迎探讨);
 
 在介绍具体的功能前，由于图片的绘制完全的依赖于图片的加载，因此先来了解一些前置知识。
 
 ## 1、图片的跨域
 
-首先，图片加载并绘制涉及了图片的跨域问题，因此如果是一张在线的图片，需要在图片服务器上设置跨域头，并且在前端加载图片之前将`<img>`标签的`crossOrigin`设置为`*`，否则绘制到画布的时候会报跨域的错误。
+首先，图片加载并绘制涉及了图片的跨域问题，因此如果是一张在线的图片，需要在图片服务器上设置跨域头，并且在前端加载图片之前**将`<img>`标签的`crossOrigin`设置为`*`**，否则绘制到画布的时候会报跨域的错误。
 
 > Tips: 这里积累了一些小坑，可以跟大家分享下：
 > 
-> 1、`crossOrigin`需要严格设置，既只有是线上图片时，才设置，而本地路径或者`base64`时，则一定不能设置，否则在某些系统下会报错，导致图片加载失败；
+> 1、`crossOrigin`需要严格设置，既**只有是线上图片时，才设置**，而本地路径或者`base64`时，则一定不能设置，否则在某些系统下会报错，导致图片加载失败；
 > 
-> 2、当项目为本地包环境时，例如内置于 `App`中时，`crossOrigin`值无效，`webview`的安全机制会导致无论该值设置与否，都会报跨域的错误。解决办法是：需要将所有图片转换成`base64`才能正确绘制；
+> 2、当项目为本地包环境时，例如内置于 `App`中时，`crossOrigin`值无效，**`webview`的安全机制会导致无论该值设置与否，都会报跨域的错误。**解决办法是：需要将所有图片**转换成`base64`**才能正确绘制；
 > 
-> 3、`crossOrigin`值一定要在图片加载之前设置，即为`<img>`赋值`src`之前进行设置，否则无效；
+> 3、`crossOrigin`值一定要在图片加载之前设置，即**为`<img>`赋值`src`之前进行设置**，否则无效；
 
 ## 2、图片的加载
 
-由于`canvas`的绘制需要的是已经加载完成的图片，我们需要确保绘制的素材图片是已经加载完成的，因此我们需要使用`<img>`的`onload`事件，可以使用这样的一个加载图片的功能函数:
+由于`canvas`的绘制需要的是已经加载完成的图片，我们需要确保绘制的素材图片是已经加载完成的，因此我们需要使用`<img>`的`onload`事件，可以**使用`html`中已存在的图片，或者用`js`创建一个图片对象:**
 
 ```js
 function loadImage(image, loader, error){
@@ -93,7 +89,7 @@ function loadImage(image, loader, error){
 ```
 介绍图片加载的前置知识后，我们先来看最简单的图片处理---缩放与裁剪！
 
-> Tips: 相信大家阅读本文时，如果对`canvas`一无所知，可以查询下对应的`API`文档即可，本文不再对`canvas`基础`api`做详细讲解。
+> Tips: 相信大家阅读本文时，如果对`canvas`不太了解，可以查询下对应的`API`文档即可，本文不再对`canvas`基础`API`做详细讲解。
 
 ## 一、图片的缩放
 
@@ -172,7 +168,7 @@ if(window.FileReader) {
 在实际项目中，由于图片的宽高比例各式各样，而展示和使用一般需要一个较为固定的比例，此时便需要将图片裁剪成我们需要的宽高比例，使用到的方式其实和图片的缩放基本一致，主要是通过调整 `drawImage` 的`dx, dy`参数来实现。原理其实是，将`drawImage`的绘制起始点`(dx, dy)`向上偏移，此时由于`canvas`已被我们设置成期望裁剪后的尺寸，而超出画布的部分不会绘制，从而达到裁剪的目的；通过灵活的设置值，基本可以完成各种图片裁剪需求，简单示例图(黑色框代表创建的画布的尺寸): 
 
 <div align='center'>
-	<img src="./images/mcanvas/crop.png" width = "400" align=center /><br/>
+	<img src="./images/mcanvas/crop.png" width = "600" align=center /><br/>
 </div>
 
 此处以需要将一张`600*800`的长方形图竖直居中裁剪为`600*600`的正方形图为例, 简单封装成一个功能函数:

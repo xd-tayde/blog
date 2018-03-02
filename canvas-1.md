@@ -27,15 +27,23 @@
 
 - **基础类型的图片处理技术:** 图片缩放，旋转，添加边框，图片合成，拼图等业务都属于基础类型的图片处理，其区分点在于**无需使用像素级别的算法**，而是通过计算改变图片的**尺寸及位置**等来改造图片。例如常用的贴纸功能:
 
+<br/>
+
 <div align='center'>
-	<img src="./images/mcanvas/sticker.jpg" width = "500" align=center /><br/>
+	<img src="./images/mcanvas/sticker.jpg" width = "600" align=center /><br/>
 </div>
+
+<br/>
 
 - **算法类型的图片处理:** 这类型的图片处理复杂度较高，特点是通过像素级别算法对图片的**像素点**进行`RGBA`通道值等进行改造，例如我们使用`photshop`或者美图秀秀等工具对图片进行的 美颜 / 滤镜 / 黑白 / 抠图 / 模糊等操作，这类型的重点主要在于**算法和性能**层面。例如常用的妆容功能:
 
+<br/>
+
 <div align='center'>
-	<img src="./images/mcanvas/makeup.jpg" width = "500" align=center /><br/>
+	<img src="./images/mcanvas/makeup.jpg" width = "600" align=center /><br/>
 </div>
+
+<br/>
 
 本系列首先从基础类型处理开启我们的旅程。基础类型的图片处理在实际项目中有着大量的使用场景，主要是运用`canvas`的能力来完成，不存在性能和兼容性问题，能够达到线上运行标准。我这里将基础类型的图片处理大致的分成以下几种类型，这些类型基本能覆盖日常所有业务场景：
 
@@ -167,9 +175,13 @@ if(window.FileReader) {
 
 在实际项目中，由于图片的宽高比例各式各样，而展示和使用一般需要一个较为固定的比例，此时便需要将图片裁剪成我们需要的宽高比例，使用到的方式其实和图片的缩放基本一致，主要是通过调整 `drawImage` 的`dx, dy`参数来实现。原理其实是，将`drawImage`的绘制起始点`(dx, dy)`向上偏移，此时由于`canvas`已被我们设置成期望裁剪后的尺寸，而超出画布的部分不会绘制，从而达到裁剪的目的；通过灵活的设置值，基本可以完成各种图片裁剪需求，简单示例图(黑色框代表创建的画布的尺寸): 
 
+<br/>
+
 <div align='center'>
 	<img src="./images/mcanvas/crop.png" width = "600" align=center /><br/>
 </div>
+
+<br/>
 
 此处以需要将一张`600*800`的长方形图竖直居中裁剪为`600*600`的正方形图为例, 简单封装成一个功能函数:
 
@@ -243,6 +255,8 @@ cvs.toDataURL();
 
 上面这个例子中，由于图片是正方形，因此将容器的宽高放大1.5倍便可保证图片不会被裁剪，而现实中的图片由于宽高比例不定，因此这个放大系数是一个动态的值:
 
+> Tips: 由于我们将画板基点移动到画布中心了，因此在绘制的时候，要相对于基点调整 `dx` 与 `dy`;
+ 
 ```js
 // 创建画布，获取画板；
 ...
@@ -254,11 +268,14 @@ let ir = iw > ih ? iw / ih : ih / iw;
 cvs.width = iw * ir * 1.5;
 cvs.height = ih * ir * 1.5;
 // 将参照点移动到画板的中心点；
-ctx.translate(ctx.width/2, ctx.height/2);
+ctx.translate(cvs.width/2, cvs.height/2);
 // 旋转画板；
 ctx.rotate = 90;
 
-// 绘制并导出图片；
+// 绘制图片；
+ctx.drawImage(img, -cvs.width/2, -cvs.height/2);
+
+// 导出图片；
 ...
 
 ```

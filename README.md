@@ -6,6 +6,8 @@
 
 - [JavaScript中的图片处理与合成(一)](./canvas-1.md)
 
+- [JavaScript中的图片处理与合成(二)](./canvas-2.md)
+
 
 ## 基础知识
 

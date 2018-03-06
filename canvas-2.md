@@ -41,11 +41,11 @@
 	<img src="./images/mcanvas/ear.png" width = "300" align=center /><br/>
 </div>
 <br/>
-1、首先我们需要 **创建** 一个与原图一样大小的 **画布**；
+1、首先我们需要创建一个与原图一样大小的画布；
 
 2、加载背景图并 **添加背景图层** ，也就是这个美女啦~
 
-3、加载猫耳朵图并添加美女头上的 **猫耳朵图层** ( **2/3顺序不可逆，否则耳朵会被美女盖在下面哦~因此图片的加载控制十分重要** ) ；
+3、加载猫耳朵图并添加美女头上的 **猫耳朵图层** ( **2/3顺序不可逆，否则耳朵会被美女盖在下面哦。因此图片的加载控制十分重要** )；
 
 4、将整个画布 **导出图片** ；
 
@@ -136,35 +136,34 @@ MCanvas.prototype._init = function(){
 
 设置画布大小并绘制美女背景图。
 
-通过调整背景图的`dx,dy,dw,dh`参数，可以绘制出多种模式，类似于`css`中的`background-size`那样的多种模式, 例如`contain`/`cover`等效果。
+通过调整背景图的`dx,dy,dw,dh`参数，可以绘制出多种模式，类似于`css`中的`background-size`的`contain`/`cover`等效果。
 
 这里主要以上面使用到的场景为例子，既原图模式。
 
 ```js
 // 原图/效果图尺寸保持一致；
 MCanvas.prototype.background = function(image, bgOps){
-
 	// 推入队列系统；
 	this.queue.push(() => {
-		let { iw, ih } = this._getSize(img);
+	let { iw, ih } = this._getSize(img);
 		
-		// 图片与canvas的长宽比；
-		let iRatio = iw / ih;
+	// 图片与canvas的长宽比；
+	let iRatio = iw / ih;
 		
-		// 背景绘制参数；
-		let dx,dy,dwidth,dheight;
+	// 背景绘制参数；
+	let dx,dy,dwidth,dheight;
 		
-		// 设置画布与背景图尺寸一致；
-		this.canvas.width = iw;
-		this.canvas.height = ih;
-		dx = dy = 0;
-		dwidth = this.canvas.width;
-		dheight = this.canvas.height;
+	// 设置画布与背景图尺寸一致；
+	this.canvas.width = iw;
+	this.canvas.height = ih;
+	dx = dy = 0;
+	dwidth = this.canvas.width;
+	dheight = this.canvas.height;
 		
-		// 绘制背景图；
-		this.ctx.drawImage(img,dx,dy,dwidth,dheight);
+	// 绘制背景图；
+	this.ctx.drawImage(img,dx,dy,dwidth,dheight);
 		
-		this._next(); 
+	this._next(); 
     });
     return this;
 };
@@ -172,29 +171,30 @@ MCanvas.prototype.background = function(image, bgOps){
 
 ### 绘制猫耳朵贴纸
 
-相信大家都玩过贴纸，其最大的特点，就是贴纸与背景图的匹配。也就是用户可以修改贴纸的大小，位置，旋转角度，通过手势将猫耳朵完美地贴在自己的头上。因此也就是说`add`这个方法，需要设置缩放，旋转与位置等参数。
+相信大家都玩过贴纸，其最大的特点，就是贴纸与背景图的匹配。也就是用户可以修改贴纸的 **大小，位置，旋转角度**，通过手势操作将猫耳朵完美地贴在照片人物的头上。因此也就是说`add`这个方法，需要设置缩放，旋转与位置等参数。
 
 这里先模拟出一份使用参数, 实际真实情况会根据不同的背景图，用户会调整出不同的位置参数。
 
 ```js
-    {
-    	// 图片路径；
-        image:'./images/ear.png',
-        options:{
-        	// 贴纸宽度；
-            width:482,
-            pos:{
-            	// 贴纸左上点坐标；
-                x:150,
-                y:58,
-                // 贴纸放大系数；
-                scale:1,
-                // 贴纸旋转系数；
-                rotate:45,
-            },
+{
+	// 图片路径；
+    image:'./images/ear.png',
+    options:{
+    	// 贴纸宽度；
+        width:482,
+        pos:{
+        	// 贴纸左上点坐标；
+            x:150,
+            y:58,
+            // 贴纸放大系数；
+            scale:1,
+            // 贴纸旋转系数；
+            rotate:35,
         },
-    }
+    },
+}
 ```
+
 ### `add`函数
 
 接下里我们便来在`add`函数中解析下各个参数的使用姿势:
@@ -203,13 +203,13 @@ MCanvas.prototype.background = function(image, bgOps){
 
 ```js
 // 创建小画布；
-let lcvs = document.createElement('canvas');
-let lctx = lcvs.getContext('2d');
+let lcvs = document.createElement('canvas'),
+	lctx = lcvs.getContext('2d');
 
 // 贴纸图原始大小；
 let { iw, ih } = this._getSize(img);
 // 绘制参数;
-let ldx,ldy,ldw,ldh;
+let ldx, ldy, ldw, ldh;
 
 // 贴纸原始尺寸；
 ldw = iw;

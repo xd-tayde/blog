@@ -9,25 +9,24 @@
 - 基础类型图片处理技术之文字合成；
 - 算法类型图片处理技术；
 
-上篇文章，我们介绍了图片的裁剪/旋转与缩放，接下来本文主要介绍图片的合成，这是基础类图片处理中比较实用且复杂的一部分。
+上篇文章，我们介绍了图片的裁剪/旋转与缩放，接下来本文主要介绍 **图片的合成** ，这是基础类图片处理中比较实用且复杂的一部分，可以算第一篇文章内容的实践。
 
 通过这些积累，我封装了几个项目中常用的功能：
 
-### **图片合成:** [Example](http://f2er.meitu.com/gxd/mcanvas/example/index.html) [Git](https://github.com/xd-tayde/mcanvas)
-
-### **图片裁剪:** [Example](http://f2er.meitu.com/hmz/ClipImageDemo/example/index.html) [Git](https://github.com/ishareme/clipimage)
-
-### **人像抠除:** [Example](http://f2er.meitu.com/gxd/matting/example/index.html) [Git](https://github.com/xd-tayde/matting)
+### **[图片合成](https://github.com/xd-tayde/mcanvas)** &nbsp;&nbsp;&nbsp; **[图片裁剪](https://github.com/ishareme/clipimage)** &nbsp;&nbsp;&nbsp; **[人像抠除](https://github.com/xd-tayde/matting)**
 
 ## 图片的合成
 
-图片的合成在实际项目中运用也是十分的广泛，大家可以试试这个`demo`(仅支持移动端):
+图片的合成在实际项目中运用也是十分的广泛，大家可以试试这个`demo`(仅支持移动端): 🐶🐶🐶
 
 ### [小狗贴纸](http://api.test.meitu.com/front_end/xiuxiu/online_mapp/tietie_2/index.html?tietieType=1011&pic=http://mtapplet.meitudata.com/57ea433108c45eb2b166.jpg)
+<div align='center'>
+	<img src="./images/mcanvas/sticker-demo.png" width = "200" align=center /><br/>
+</div>
+<br/>
 
-<a href="http://api.test.meitu.com/front_end/xiuxiu/online_mapp/tietie_2/index.html?tietieType=1011&pic=http://mtapplet.meitudata.com/57ea433108c45eb2b166.jpg" target="_blank">小狗贴纸</a>
 
-图片的合成原理其实类似于`photoshop`的理念，通过图层的叠加，最后合成并导出，相比于裁剪和缩放，其实基本原理是一致的，但是它涉及了更多的计算和比较复杂的流程，我们先一起来梳理下合成的整个逻辑。
+图片的合成原理其实类似于`photoshop`的理念，通过 **图层的叠加** ，最后合成并导出，相比于裁剪和缩放，其实基本原理是一致的，但是它涉及了更多的计算和比较复杂的流程，我们先一起来梳理下合成的整个逻辑。
 
 相信大家对 `photoshop`都是较为了解的，我们可以借鉴它的思维方式:
 
@@ -36,29 +35,27 @@
 - 从底部到顶部一层层添加所需要的图层；
 - 最后直接将整个文件导出成一张图片；
 
-以需要合成下图为例：
-
+以需要合成下图为🌰：
+<br/>
 <div align='center'>
 	<img src="./images/mcanvas/ear.png" width = "300" align=center /><br/>
 </div>
+<br/>
+1、首先我们需要 **创建** 一个与原图一样大小的 **画布**；
 
-1、首先我们需要创建一个与原图一样大小的画布；
+2、加载背景图并 **添加背景图层** ，也就是这个美女啦~
 
-2、加载背景图并添加背景图层，也就是这个美女啦~
+3、加载猫耳朵图并添加美女头上的 **猫耳朵图层** ( **2/3顺序不可逆，否则耳朵会被美女盖在下面哦~因此图片的加载控制十分重要** ) ；
 
-3、加载猫耳朵图并添加美女头上的猫耳朵图层；
-
-> Tips: 2/3顺序不可逆，否则耳朵会被美女盖在下面哦~因此图片的加载控制十分重要；
-
-4、将整个画布导出成一张图片；
+4、将整个画布 **导出图片** ；
 
 合成部分，主要以封装的插件为栗子哈。这样能尽可能的完整，避免遗漏点。在开始之前，为了确保图片异步绘制的顺序，我们需要先来构建一套队列系统。
 
 ### 队列系统；
 
-图片的加载时间是异步且未知的，而图片的合成需要严格保证绘制的顺序，越后绘制的图片会置于越顶层，因此我们需要一套严格机制来控制图片的加载与绘制，否则我们将无法避免的写出回调地狱，这里我使用到了简单的队列系统；
+图片的加载时间是 **异步且未知** 的，而图片的合成需要严格保证绘制 **顺序** ，越后绘制的图片会置于越顶层，因此我们需要一套严格机制来控制图片的加载与绘制，否则我们将无法避免的写出 **回调地狱** ，这里我使用到了简单的队列系统；
 
-队列系统的原理其实也很简单，主要是为了我们能确保图层从底到顶一层一层的绘制。我设计的使用方式如下：
+队列系统的原理其实也很简单，主要是为了我们能确保图层从底到顶一层一层的绘制。我设计的使用方式如下, 队列方式主要来确保`add`函数的按顺序绘制:
 
 ```js
 // 创建画布；
@@ -75,11 +72,11 @@ mc.draw();
 
 - `queue`队列: 用于存放图层绘制函数；
 
-- `next`函数: 用于表示图层已绘制完毕，执行下一图层的绘制；
+- `next`函数: 用于表示当前图层已绘制完毕，执行下一图层的绘制；
 
 - `add`函数: 作为统一添加图层的方法，将绘制逻辑存入函数栈`quene`，并包裹`next`函数；
 
-- `draw`函数: 作为绘制启动函数，表示所有图层已经准备完毕，可以按顺序开始绘制；
+- `draw`函数: 作为绘制启动函数，表示所有图层素材已经准备完毕，可以按顺序开始绘制；
 
 ```js
 MCanvas.queue = [];
@@ -137,9 +134,11 @@ MCanvas.prototype._init = function(){
 
 ### 绘制背景图
 
-设置画布大小并绘制美女背景图，背景图的绘制可以实现成类似于`css`中的`background-size`那样的多种模式, 例如`contain`/`cover`等效果，只需要调整绘制的`dx,dy,dw,dh`。
+设置画布大小并绘制美女背景图。
 
-这里主要以上面使用到的场景为例子哈~~
+通过调整背景图的`dx,dy,dw,dh`参数，可以绘制出多种模式，类似于`css`中的`background-size`那样的多种模式, 例如`contain`/`cover`等效果。
+
+这里主要以上面使用到的场景为例子，既原图模式。
 
 ```js
 // 原图/效果图尺寸保持一致；
@@ -162,7 +161,8 @@ MCanvas.prototype.background = function(image, bgOps){
 		dwidth = this.canvas.width;
 		dheight = this.canvas.height;
 		
-		// 绘制背景图；this.ctx.drawImage(img,dx,dy,dwidth,dheight);
+		// 绘制背景图；
+		this.ctx.drawImage(img,dx,dy,dwidth,dheight);
 		
 		this._next(); 
     });
@@ -234,14 +234,14 @@ lctx.translate(lcvs.width/2,lcvs.height/2);
 lctx.rotate(ops.pos.rotate);
 
 // 绘制贴纸； 
-lctx.drawImage(img,lsx,lsy,lsw,lsh,ldx,ldy,ldw,ldh);
+lctx.drawImage(img,ldx,ldy,ldw,ldh);
 ```
 此时我们会得到一个小画布，中心绘制这猫耳朵贴纸：
-
+<br/>
 <div align='center'>
 	<img src="./images/mcanvas/ear-canvas.jpg" width = "300" align=center /><br/>
 </div>
-
+<br/>
 接下来我们便是将贴纸绘制到背景图上，需要注意的点就是，放大会增加贴纸画布的空白区域，需要考虑到这部分区域，才能计算出最后真实的`dx,dy`值:
 
 ```js
@@ -270,11 +270,11 @@ lcvs = lctx = null;
 ```
 
 这样便能得到合成后的结果图了,红色边框代表小画布，黑色边框代表大画布:
-
+<br/>
 <div align='center'>
 	<img src="./images/mcanvas/sticker-canvas.png" width = "400" align=center /><br/>
 </div>
-
+<br/>
 ```js
 MCanvas.prototype.add = function(img, options){
 	this.queue.push(()=>{

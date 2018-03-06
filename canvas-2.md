@@ -25,6 +25,8 @@
 
 ### [小狗贴纸](http://api.test.meitu.com/front_end/xiuxiu/online_mapp/tietie_2/index.html?tietieType=1011&pic=http://mtapplet.meitudata.com/57ea433108c45eb2b166.jpg)
 
+<a href="http://api.test.meitu.com/front_end/xiuxiu/online_mapp/tietie_2/index.html?tietieType=1011&pic=http://mtapplet.meitudata.com/57ea433108c45eb2b166.jpg" target="_blank">小狗贴纸</a>
+
 图片的合成原理其实类似于`photoshop`的理念，通过图层的叠加，最后合成并导出，相比于裁剪和缩放，其实基本原理是一致的，但是它涉及了更多的计算和比较复杂的流程，我们先一起来梳理下合成的整个逻辑。
 
 相信大家对 `photoshop`都是较为了解的，我们可以借鉴它的思维方式:

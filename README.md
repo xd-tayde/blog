@@ -4,9 +4,11 @@
 
 - [HTML5中手势原理分析与数学知识的实践](./html5-touch-math.md)
 
-- [JavaScript中的图片处理与合成(一)](./canvas-1.md)
+- [JavaScript中的图片处理与合成(一) -- 图片缩放、裁剪与旋转](./canvas-1.md)
 
-- [JavaScript中的图片处理与合成(二)](./canvas-2.md)
+- [JavaScript中的图片处理与合成(二) -- 图片合成](./canvas-2.md)
+
+- [JavaScript中的图片处理与合成(四) -- 算法处理](./canvas-4.md)
 
 
 ## 基础知识

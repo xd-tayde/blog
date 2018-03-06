@@ -20,6 +20,7 @@
 图片的合成在实际项目中运用也是十分的广泛，大家可以试试这个`demo`(仅支持移动端): 🐶🐶🐶
 
 ### [小狗贴纸](http://api.test.meitu.com/front_end/xiuxiu/online_mapp/tietie_2/index.html?tietieType=1011&pic=http://mtapplet.meitudata.com/57ea433108c45eb2b166.jpg)
+
 <div align='center'>
 	<img src="./images/mcanvas/sticker-demo.png" width = "200" align=center /><br/>
 </div>
@@ -36,11 +37,13 @@
 - 最后直接将整个文件导出成一张图片；
 
 以需要合成下图为🌰：
+
 <br/>
 <div align='center'>
 	<img src="./images/mcanvas/ear.png" width = "300" align=center /><br/>
 </div>
 <br/>
+
 1、首先我们需要创建一个与原图一样大小的画布；
 
 2、加载背景图并 **添加背景图层** ，也就是这个美女啦~
@@ -237,6 +240,7 @@ lctx.rotate(ops.pos.rotate);
 lctx.drawImage(img,ldx,ldy,ldw,ldh);
 ```
 此时我们会得到一个小画布，中心绘制这猫耳朵贴纸：
+
 <br/>
 <div align='center'>
 	<img src="./images/mcanvas/ear-canvas.jpg" width = "300" align=center /><br/>
@@ -275,6 +279,7 @@ lcvs = lctx = null;
 	<img src="./images/mcanvas/sticker-canvas.png" width = "400" align=center /><br/>
 </div>
 <br/>
+
 ```js
 MCanvas.prototype.add = function(img, options){
 	this.queue.push(()=>{

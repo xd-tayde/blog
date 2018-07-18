@@ -210,7 +210,7 @@ mWebView.evaluateJavascript（"javascript:JSBridge.trigger('NativeCall')", 	 new
 - JSBridge 的接入
 - H5 的接入
 
-只有在了解了其最本质的实现原理后，才能对这套方案进行实现以及进一步的优化。接下来，将会继续探讨这套方案的真正代码实现以及方案优化方案，欢迎大家一起讨论！
+只有在了解了其最本质的实现原理后，才能对这套方案进行实现以及进一步的优化。接下来，将会继续探讨这套方案的真正代码实现以及方案优化方案，欢迎大家一起讨论！更多文章内容请到[github](https://github.com/xd-tayde/blog/blob/master/hybrid-1.md)；
 
 
 

@@ -2,6 +2,8 @@
 
 ## 博文:
 
+- [Hybrid App技术解析 -- 原理篇](./hybrid-1.md)
+
 - [HTML5中手势原理分析与数学知识的实践](./html5-touch-math.md)
 
 - [JavaScript中的图片处理与合成(一) -- 图片缩放、裁剪与旋转](./canvas-1.md)

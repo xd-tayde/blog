@@ -36,7 +36,7 @@ Hybrid App，俗称混合应用，即混合了 Native技术 与 Web技术 进行
 
 ## Hybrid技术原理
 
-Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容器直接承载 Web页面。因此，最核心的点就是 Native端 与 H5端 之间的**双向通讯层**，其实这里也可以理解为我们需要一套**跨语言通讯方案**，来完成 Native(Java/Objective-c/...) 与 JavaScript 的通讯。这个方案就是我们所说的 JSBridge，而实现的关键，便是作为容器的 WebView，一切的原理都是基于 WebView 的机制。
+Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容器直接承载 Web页面。因此，最核心的点就是 Native端 与 H5端 之间的**双向通讯层**，其实这里也可以理解为我们需要一套**跨语言通讯方案**，来完成 Native(Java/Objective-c/...) 与 JavaScript 的通讯。这个方案就是我们所说的 JSBridge，而实现的关键便是作为容器的 WebView，一切的原理都是基于 WebView 的机制。
 
 <div align='center'>
 	<img src="./images/hybrid/hybrid-2.png" width = "300" align=center /><br/>
@@ -66,7 +66,7 @@ Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容�
 
 这里有几个需要注意点的是:
 
-(1) xxcommand:// 只是一种规则，可以根据业务进行制定，使其具有含义，例如我们定义 xxcommand:// 为公司所有App系通用，为通用工具协议：
+(1) xxcommand:// 只是一种规则，可以**根据业务进行制定，使其具有含义**，例如我们定义 xxcommand:// 为公司所有App系通用，为通用工具协议：
 > xxcommand://getProxy?h=1
  
 而定义 xxapp:// 为每个App单独的业务协议。
@@ -76,7 +76,7 @@ Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容�
 
 (2) 这里不要使用 location.href 发送，因为其自身机制有个问题是同时并发多次请求会被合并成为一次，导致协议被忽略，而并发协议其实是非常常见的功能。我们会使用**创建 iframe 发送请求**的方式。
 
-(3) 通常考虑到安全性，需要在客户端中设置域名白名单或者限制，避免公司内部业务协议被第三方直接调用。
+(3) 通常考虑到安全性，需要**在客户端中设置域名白名单或者限制**，避免公司内部业务协议被第三方直接调用。
 
 #### 3.协议的拦截
 
@@ -86,25 +86,23 @@ Hybrid App的本质，其实是在原生的 App 中，使用 WebView 作为容�
 
 - Android: shouldOverrideUrlLoading
 
-当解析到请求 URL 头为制定的协议时，便不发起对应的资源请求，而是解析参数，并进行相关功能或者方法的调用，完成协议功能的映射。
+当解析到请求 URL 头为制定的协议时，便不发起对应的资源请求，而是**解析参数，并进行相关功能或者方法的调用**，完成协议功能的映射。
 
 #### 4.协议回调
 
 由于协议的本质其实是发送请求，这属于一个异步的过程，因此我们便需要处理对应的回调机制。这里我们采用的方式是JS的事件系统，这里我们会用到 `window.addEventListener` 和 `window.dispatchEvent`这两个基础API；
 
-- 1. 发送协议时，通过协议的唯一标识注册自定义事件，并将回调绑定到对应的事件上。
+- 1.发送协议时，通过协议的唯一标识注册自定义事件，并将回调绑定到对应的事件上。
 
-- 2. 客户端完成对应的功能后，调用 Bridge 的dispatch API，直接携带 data 触发该协议的自定义事件。
+- 2.客户端完成对应的功能后，调用 Bridge 的dispatch API，直接携带 data 触发该协议的自定义事件。
 
-原生的事件机制是我们非常熟悉的，例如我们常用的
+<div align='center'>
+	<img src="./images/hybrid/hybrid-4.png" width = "500" align=center /><br/>
+</div>
 
-```js
-window.addEventListener('DOMContentLoaded', () => {});
-```
 通过事件的机制，会让开发更符合我们前端的习惯，例如当你需要监听客户端的通知时，同样只需要在通过 `addEventListener` 进行监听即可。
 
 **Tips:** 这里有一点需要注意的是，应该避免事件的多次重复绑定，因此当唯一标识重置时，需要`removeEventListener`对应的事件。
-
 
 #### 5.参数传递方式
 
@@ -112,7 +110,7 @@ window.addEventListener('DOMContentLoaded', () => {});
 
 因此我们需要制定新的参数传递规则，我们使用的是函数调用的方式。这里的原理主要是基于: 
 
-> Native 可以直接调用 JS 方法并直接获取函数的返回值。
+**Native 可以直接调用 JS 方法并直接获取函数的返回值。**
 
 我们只需要对每条协议标记一个唯一标识，并把参数存入参数池中，到时客户端再通过该唯一标识从参数池中获取对应的参数即可。
 
@@ -158,9 +156,9 @@ mWebView.evaluateJavascript（"javascript:JSBridge.trigger('NativeCall')", 	 new
 
 接下来，我们来理下代码上需要的资源。实现这套方案，从上图可以看出，其实可以分为两个部分:
 
-- JS部分(bridge): 在JS环境中注入 bridge 的实现代码，包含了协议的拼装/发送/参数池/回调池等一些基础功能。
+- **JS部分(bridge)**: 在JS环境中注入 bridge 的实现代码，包含了协议的拼装/发送/参数池/回调池等一些基础功能。
 
-- Native部分(SDK)：在客户端中 bridge 的功能映射代码，实现了URL拦截与解析/环境信息的注入/通用功能映射等功能。
+- **Native部分(SDK)**: 在客户端中 bridge 的功能映射代码，实现了URL拦截与解析/环境信息的注入/通用功能映射等功能。
 
 我们这里的做法是，将这两部分一起封装成一个 **Native SDK**，由客户端统一引入。客户端在初始化一个 WebView 打开页面时，如果页面地址在白名单中，会**直接在 HTML 的头部注入对应的 bridge.js**。这样的做法有以下的好处：
 
@@ -170,7 +168,7 @@ mWebView.evaluateJavascript（"javascript:JSBridge.trigger('NativeCall')", 	 new
 
 - H5端无需关注，这样有利于将 bridge 开放给第三方页面使用。
 
-这里有一点需要注意的是，**协议的调用，一定是需要确保执行在bridge.js 成功注入后**。由于客户端的注入行为属于一个附加的异步行为，从H5方很难去捕捉准确的完成时机，因此这里需要通过客户端监听页面完成后，基于上面的回调机制通知 H5端，页面中即可通过`window.addEventListener('bridgeReady', e => {})`进行初始化。
+这里有一点需要注意的是，**协议的调用，一定是需要确保执行在bridge.js 成功注入后**。由于客户端的注入行为属于一个附加的异步行为，从H5方很难去捕捉准确的完成时机，因此这里需要通过客户端监听页面完成后，基于上面的事件回调机制通知 H5端，页面中即可通过`window.addEventListener('bridgeReady', e => {})`进行初始化。
 
 ### (四) App中 H5 的接入方式
 
@@ -210,7 +208,7 @@ mWebView.evaluateJavascript（"javascript:JSBridge.trigger('NativeCall')", 	 new
 - JSBridge 的接入
 - H5 的接入
 
-只有在了解了其最本质的实现原理后，才能对这套方案进行实现以及进一步的优化。接下来，将会继续探讨这套方案的真正代码实现以及方案优化方案，欢迎大家一起讨论！更多文章内容请到[github](https://github.com/xd-tayde/blog/blob/master/hybrid-1.md)；
+只有在了解了其最本质的实现原理后，才能对这套方案进行实现以及进一步的优化。接下来，我们将基于上面的理论，继续探讨如何把这套方案的真正代码实现以及方案优化方案，欢迎大家一起讨论！更多文章内容请到[github](https://github.com/xd-tayde/blog/blob/master/hybrid-1.md)。感谢！😊
 
 
 

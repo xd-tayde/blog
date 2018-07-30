@@ -2,6 +2,8 @@
 
 ## 博文:
 
+- [Hybrid App技术解析 -- 实战篇](./hybrid-2.md)
+
 - [Hybrid App技术解析 -- 原理篇](./hybrid-1.md)
 
 - [HTML5中手势原理分析与数学知识的实践](./html5-touch-math.md)

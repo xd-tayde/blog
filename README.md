@@ -2,6 +2,8 @@
 
 ## 博文:
 
+- [中高级前端大厂面试秘籍](./interview.md)
+
 - [Hybrid App技术解析 -- 实战篇](./hybrid-2.md)
 
 - [Hybrid App技术解析 -- 原理篇](./hybrid-1.md)

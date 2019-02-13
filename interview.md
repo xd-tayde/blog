@@ -12,9 +12,9 @@
 
 想必大家很厌烦笔试和考察知识点。因为其实在平时实战中，讲究的是开发效率，很少会去刻意记下一些细节和深挖知识点，脑海中都是一些分散的知识点，无法系统性地关联成网，一直处于时曾相识的状态。不知道多少人和博主一样，至今每次写阻止冒泡都需要谷歌一番如何拼写。🤪。
 
-以如此的状态，定然是无法在面试的战场上纵横的。其实面试就犹如考试，大家回想下高考之前所做的事，无非就是 **理解** 和 **系统性记忆**。本秘籍的知识点较多，花点时间一个个理解并记忆后，自然也就融会贯通，无所畏惧。
+以如此的状态，定然是无法在面试的战场上纵横的。其实面试就犹如考试，大家回想下高考之前所做的事，无非就是 **理解** 和 **系统性关联记忆**。本秘籍的知识点较多，花点时间一个个理解并记忆后，自然也就融会贯通，无所畏惧。
 
-由于本秘籍为了便于记忆，快速达到应试状态，类似于复习知识大纲。知识点会尽量的精简与总结大纲，知识脉络，并不去展开深入细节，面面俱到，有兴趣或者无法理解的童鞋可以自行谷歌下对应知识点的详细内容。😋
+由于本秘籍为了便于记忆，快速达到应试状态，类似于复习知识大纲。知识点会尽量的精简与提炼知识脉络，并不去展开深入细节，面面俱到。有兴趣或者有疑问的童鞋可以自行谷歌下对应知识点的详细内容。😋
 
 ## CSS
 
@@ -93,7 +93,7 @@
 	- `absolute + transform`
 	- `flex + justify-content + align-items`
 
-### 5. 选择器优先级：
+### 5. 选择器优先级
 
 - `!important` > 行内样式 > `#id` > `.class` > `tag` > * > 继承 > 默认 
 - 选择器 **从右往左** 解析
@@ -114,7 +114,7 @@
 
 ### 8. CSS预处理器(Sass/Less/Postcss)
 
-常用功能: 
+CSS预处理器的原理: 是将类 CSS 语言通过 **Webpack 编译** 转成浏览器可读的真正 CSS。在这层编译之上，便可以赋予 CSS 更多更强大的功能，常用功能: 
 
 - 嵌套
 - 变量
@@ -123,6 +123,8 @@
 - 自动前缀
 - 单位转换
 - mixin复用
+
+面试中一般不会重点考察该点，一般介绍下自己在实战项目中的经验即可~
 
 ### 9.CSS动画
 
@@ -156,15 +158,19 @@
 	- `opacity`
 	- `color`
 
+### 经验
+
+通常，CSS 并不是重点的考察领域，但这其实是由于现在国内业界对 CSS 的专注不够导致的，真正精通并专注于 CSS 的团队和人才并不多。因此如果能在 CSS 领域有自己的见解和经验，反而会为相当的加分和脱颖而出。
+
 ## JavaScript
 
 ### 1. 原型 / 构造函数 / 实例
 
-- 原型`(prototype)`: 一个简单的对象，用于实现对象的**属性继承**。可以简单的理解成对象的爹。在 Firefox 和 Chrome 中，每个`JavaScript`对象中都包含一个`__proto__` (非标准)的属性指向它爹(该对象的原型)，可`obj.__proto__`进行访问。
+- 原型`(prototype)`: 一个简单的对象，用于实现对象的 **属性继承**。可以简单的理解成对象的爹。在 Firefox 和 Chrome 中，每个`JavaScript`对象中都包含一个`__proto__` (非标准)的属性指向它爹(该对象的原型)，可`obj.__proto__`进行访问。
 
-- 构造函数: 可以通过`new`来**新建一个对象**的函数。
+- 构造函数: 可以通过`new`来 **新建一个对象** 的函数。
 
-- 实例: 通过构造函数和`new`创建出来的对象，便是实例。**实例通过`__proto__`指向原型，通过`constructor`指向构造函数**。
+- 实例: 通过构造函数和`new`创建出来的对象，便是实例。 **实例通过`__proto__`指向原型，通过`constructor`指向构造函数**。
 
 说了一大堆，大家可能有点懵逼，这里来举个栗子，以`Object`为例，我们常用的`Object`便是一个构造函数，因此我们可以通过它构建实例。
 
@@ -172,7 +178,7 @@
 // 实例
 const instance = new Object()
 ```
-则此时， 实例为`instance`, 构造函数为`Object`，我们知道，构造函数拥有一个`prototype`的属性指向原型，因此原型为:
+则此时， **实例为`instance`**, **构造函数为`Object`**，我们知道，构造函数拥有一个`prototype`的属性指向原型，因此原型为:
 
 ```js
 // 原型
@@ -217,24 +223,24 @@ const prototype = Object.prototype
 	- 函数执行上下文  	  
 	- `eval`执行上下文
 	
-- 代码执行: 
+- 代码执行过程: 
 	- 创建 **全局上下文** (global EC)
-	- 全局执行上下文 (caller) 逐行**自上而下**执行，遇到函数时，进入**函数执行上下文** (callee)， callee 被`push`到执行栈顶层
-	- 函数执行上下文被激活，成为 active EC, 开始执行函数中的代码，caller被挂起
+	- 全局执行上下文 (caller) 逐行 **自上而下** 执行。遇到函数时，**函数执行上下文** (callee) 被`push`到执行栈顶层
+	- 函数执行上下文被激活，成为 active EC, 开始执行函数中的代码，caller 被挂起
 	- 函数执行完后，callee 被`pop`移除出执行栈，控制权交还全局上下文 (caller)，继续执行
 
 ### 2.变量对象
 
-变量对象可以抽象为一种 **数据作用域**，其实也可以理解为就是一个简单的对象，它存储着该作用域中的所有 **变量和函数声明(不包含函数表达式)**。
+变量对象，是执行上下文中的一部分，可以抽象为一种 **数据作用域**，其实也可以理解为就是一个简单的对象，它存储着该执行上下文中的所有 **变量和函数声明(不包含函数表达式)**。
 
 > 活动对象 (AO): 当变量对象所处的上下文为 active EC 时，称为活动对象。
 
 ### 3. 作用域
 
-作用域可理解为 **变量的作用范围**。
-	
-- 块级作用域
-- 函数作用域
+执行上下文中还包含作用域链。理解作用域之前，先介绍下作用域。作用域其实可理解为该上下文中声明的 **变量和声明的作用范围**。可分为 **块级作用域** 和 **函数作用域**
+
+特性: 
+
 - **声明提前**: 一个声明在函数体内都是可见的, 函数优先于变量
 - 非匿名自执行函数，函数变量为 **只读** 状态，无法修改
 	
@@ -250,21 +256,25 @@ const foo = 1
 
 ### 4.作用域链
 
-作用域链: 对象列表，包含 **父级和自身的变量对象**，因此我们便能通过作用域链访问到父级，父父级里声明的变量或者函数。
+我们知道，我们可以在执行上下文中访问到父级甚至全局的变量，这便是作用域链的功劳。作用域链可以理解为一组对象列表，包含 **父级和自身的变量对象**，因此我们便能通过作用域链访问到父级里声明的变量或者函数。
 
-- 包含: 	
-	- `[[scope]]`: 指向父级变量对象和作用域链，也就是包含了父级的`[[scope]]`和`AO`
+- 由两部分组成: 	
+	- `[[scope]]`属性: 指向父级变量对象和作用域链，也就是包含了父级的`[[scope]]`和`AO`
 	- AO: 自身活动对象
+
+如此 `[[scopr]]`包含`[[scope]]`，便自上而下形成一条 **链式作用域**。
 
 ### 5. 闭包
 
-闭包属于一种特殊的作用域，称为 **静态作用域**。它在父函数被销毁的情况下，子函数的`[[scope]]`中仍然保留着父级的单变量对象和作用域链，因此可以继续访问到父级的变量对象，这样的函数称为闭包。
+闭包属于一种特殊的作用域，称为 **静态作用域**。它的定义可以理解为: **父函数被销毁** 的情况下，返回出的子函数的`[[scope]]`中仍然保留着父级的单变量对象和作用域链，因此可以继续访问到父级的变量对象，这样的函数称为闭包。
 	
-- 闭包问题: 多个子函数的`[[scope]]`都是同一份，是共享的。因此父级的变量对象被修改时，所有子函数都受到影响。
+- 闭包会产生一个很经典的问题: 
+	- 多个子函数的`[[scope]]`都是同时指向父级，是完全共享的。因此当父级的变量对象被修改时，所有子函数都受到影响。
+	
 - 解决:
-	- 变量可以通过 **参数的形式** 传入，避免使用默认的`[[scope]]`向上查找 
-	- `setTimeout`第三个参数传入
-	- 使用 **块级作用域**，避免共享
+	- 变量可以通过 **函数参数的形式** 传入，避免使用默认的`[[scope]]`向上查找 
+	- 使用`setTimeout`包裹，通过第三个参数传入
+	- 使用 **块级作用域**，让变量成为自己上下文的属性，避免共享
 
 ### 6. script 引入方式：
 
@@ -280,30 +290,42 @@ const foo = 1
 	- 展开运算符(...)
 	
 - 深拷贝: 完全拷贝一个新对象，**修改时原对象不再受到任何影响**
-	- `JOSN.parse(JSON.stringify(obj))`: 性能最快
-		- 循环引用的对象时，报错
+	- `JSON.parse(JSON.stringify(obj))`: 性能最快
+		- 具有循环引用的对象时，报错
 		- 当值为函数或`undefined`时，无法拷贝  
-	- 递归进行复制
+	- 递归进行逐一赋值
 
 ### 8. new运算符的执行过程
 
 - 新生成一个对象
-- 链接到原型:  `obj.__protp__ = Con.prototype`
-- 绑定this : `apply`
+- 链接到原型:  `obj.__proto__ = Con.prototype`
+- 绑定this: `apply`
 - 返回新对象
 
 ### 9. instanceof原理
 
-能在实例的 **原型对象链** 中找到该构造函数的`prototype`属性所指向的 **原型对象**，就返回`true`。
+能在实例的 **原型对象链** 中找到该构造函数的`prototype`属性所指向的 **原型对象**，就返回`true`。即:
 
-### 10. 复用
+```js
+// __proto__: 代表原型对象链
+instance.[__proto__...] === instance.constructor.prototype
 
+// return true
+```
+
+### 10. 代码的复用
+
+当你发现任何代码开始写第二遍时，就要开始考虑如何复用。一般有以下的方式:
+
+- 函数封装
 - 继承 
 - 复制`extend`
 - 混入`mixin`
 - 借用`apply/call`
 
 ### 11. 继承
+
+在 JS 中，继承通常指的便是 **原型链继承**，也就是通过指定原型，并可以通过原型链继承原型上的属性或者方法。
 
 - 最优化: **圣杯模式**
 	
@@ -319,9 +341,11 @@ var inherit = (function(c,p){
 })();
 ``` 
 	
-- 使用 ES6 的语法 `class / extends`
+- 使用 ES6 的语法糖 `class / extends`
 
 ### 12. 类型转换
+
+大家都知道 JS 中在使用运算符号或者对比符时，会自带隐式转换，规则如下: 
 
 - -、*、/、% ：一律转换成数值后计算
 - +： 
@@ -329,14 +353,17 @@ var inherit = (function(c,p){
 	- 数字 + 对象， 优先调用对象的`valueOf` -> `toString`
 	- 数字 + `boolean/null` = 数字
 	- 数字 + `undefined` == `NaN`
-- `[1].toString == '1'`
-- `{}.toString == '[object object]'`
-- `NaN` !== `NaN` 、`+undefined == NaN`
+- `[1].toString() === '1'`
+- `{}.toString() === '[object object]'`
+- `NaN` !== `NaN` 、`+undefined === NaN`
 
 ### 13. 类型判断
 
-- 基本类型(`null / string / number / boolean / undefined`) + `function`: 直接使用 `typeof`
-- 其余引用类型: 调用`toString`后根据`[object XXX]`进行判断
+判断 Target 的类型，单单用 typeof 并无法完全满足，这其实并不是 bug，本质原因是 JS 的万物皆对象的理论。因此要真正完美判断时，我们需要区分对待: 
+
+- 基本类型(`null`): 使用 `String(null)`
+- 基本类型(`string / number / boolean / undefined`) + `function`: 直接使用 `typeof`即可
+- 其余引用类型(`Array / Date / RegExp Error`): 调用`toString`后根据`[object XXX]`进行判断
 
 很稳的判断封装:
 
@@ -351,19 +378,23 @@ function type(obj) {
 ```
 ### 14. 模块化
 
+模块化开发在现代开发中已是必不可少的一部分，它大大提高了项目的可维护、可拓展和可协作性。通常，我们 **在浏览器中使用 ES6 的模块化支持，在 Node 中使用 commonjs 的模块化支持。**
+
 - 分类: 
-	- ES6： `import / exports`
+	- es6: `import / exports`
 	- commonjs: `require / module.exports / exports`
-	- AMD: `require / defined`
+	- amd: `require / defined`
 
 - `require`与`import`的区别
 	- `require`支持 **动态导入**，`import`不支持，正在提案 (babel 下可支持)
-	- `require`是同步导入，`import`属于异步导入
-	- `require`是值拷贝，导出值变化不会影响导入值；`import`指向内存地址，导入值会随导出值而变化
+	- `require`是 **同步** 导入，`import`属于 **异步** 导入
+	- `require`是 **值拷贝**，导出值变化不会影响导入值；`import`指向 **内存地址**，导入值会随导出值而变化
 
 ### 15. 反抖与节流
 
-- **防抖 (debounce)**: 多次操作变为最后一次执行
+反抖和节流函数是一种最常用的 **高频触发优化方式**，能对性能有较大的帮助。
+
+- **防抖 (debounce)**: 将多次高频操作优化为只在最后一次执行，通常使用的场景是：用户输入，只需再输入完成后做一次输入校验即可。
 
 ```js
 function debounce(fn, wait, immediate) {
@@ -385,7 +416,7 @@ function debounce(fn, wait, immediate) {
 }
 ```
 
-- **节流(throttle)**: 每隔一段时间后执行一次
+- **节流(throttle)**: 每隔一段时间后执行一次，也就是降低频率，将高频操作优化成低频操作，通常使用场景: 滚动条事件 或者 resize 事件，通常每隔 100~500 ms执行一次即可。
 
 ```js
 function throttle(fn, wait, immediate) {
@@ -412,58 +443,75 @@ function throttle(fn, wait, immediate) {
 ```
 
 ### 16. 函数执行改变this
+
+由于 JS 的设计原理: 在函数中，可以引用运行环境中的变量。因此就需要一个机制来让我们可以在函数体内部获取当前的运行环境，这便是`this`。
+
+因此要明白 `this` 指向，其实就是要搞清楚 函数的运行环境，说人话就是，谁调用了函数。例如:  
+
+- `obj.fn()`，便是 `obj` 调用了函数，既函数中的 `this === obj`
+- `fn()`，这里可以看成 `window.fn()`，因此 `this === window`
+
+但这种机制并不完全能满足我们的业务需求，因此提供了三种方式可以手动修改 `this` 的指向:
 	
-- call: fn.call(this, 1, 2)
-- apply: fn.apply(this, [1, 2])
-- bind: fn.bind(this)(1,2)	 
+- `call: fn.call(target, 1, 2)`
+- `apply: fn.apply(target, [1, 2])`
+- `bind: fn.bind(target)(1,2)`
 
 ### 17. ES6/ES7
+
+由于 Babel 的强大和普及，现在 ES6/ES7 基本上已经是现代化开发的必备了。通过新的语法糖，能让代码整体更为简洁和易读。
 
 - 声明
 	- `let / const`: 块级作用域、不存在变量提升、暂时性死区、不允许重复声明
 	- `const`: 声明常量，无法修改
+	
 - 解构赋值
-- `class / extend`
-- `Set / Map`
-- `Promise`的使用与实现
-- `generator`: 
-	- `yield`: 暂停代码 
-	- `next()`: 继续执行代码
+- `class / extend`: 类声明与继承
 
-```js
-function* helloWorld() {
-  yield 'hello';
-  yield 'world';
-  return 'ending';
-}
+- `Set / Map`: 新的数据结构
 
-const generator = helloWorld();
+- 异步解决方案:
+ 
+	- `Promise`的使用与实现
 
-generator.next()  // { value: 'hello', done: false }
-
-generator.next()  // { value: 'world', done: false }
-
-generator.next()  // { value: 'ending', done: true }
-
-generator.next()  // { value: undefined, done: true }
-
-```
-
-- `await / async`: 是`generator`的语法糖， babel中是基于`promise`实现。
-
-```js
-async function getUserByAsync(){
-   let user = await fetchUser();
-   return user;
-}
-
-const user = await getUserByAsync()
-console.log(user)
-``` 
+	- `generator`: 
+		- `yield`: 暂停代码 
+		- `next()`: 继续执行代码
+	
+	```js
+	function* helloWorld() {
+	  yield 'hello';
+	  yield 'world';
+	  return 'ending';
+	}
+	
+	const generator = helloWorld();
+	
+	generator.next()  // { value: 'hello', done: false }
+	
+	generator.next()  // { value: 'world', done: false }
+	
+	generator.next()  // { value: 'ending', done: true }
+	
+	generator.next()  // { value: undefined, done: true }
+	
+	```
+	
+	- `await / async`: 是`generator`的语法糖， babel中是基于`promise`实现。
+	
+	```js
+	async function getUserByAsync(){
+	   let user = await fetchUser();
+	   return user;
+	}
+	
+	const user = await getUserByAsync()
+	console.log(user)
+	``` 
 
 ### 18. AST
 
-**抽象语法树 (Abstract Syntax Tree)**，将代码逐字母解析成树状对象的形式，便于代码转换、代码语法检查，代码风格检查，代码格式化，代码高亮，代码错误提示，代码自动补全等等。例如:
+**抽象语法树 (Abstract Syntax Tree)**，是将代码逐字母解析成 **树状对象** 的形式。这是语言之间的转换、代码语法检查，代码风格检查，代码格式化，代码高亮，代码错误提示，代码自动补全等等的基础。例如:
 
 ```js
 function square(n){
@@ -477,13 +525,13 @@ function square(n){
 
 ### 19. babel编译原理
 
--  babylon 解析代码成 AST
+-  babylon 将 ES6/ES7 代码解析成 AST
 -  babel-traverse 对 AST 进行遍历转译，得到新的 AST
 -  新 AST 通过 babel-generator 转换成 ES5
 
 ### 20. 函数柯里化
 
-在一个函数中，首先填充几个参数，然后再返回一个新的函数的技术，称为柯里化
+在一个函数中，首先填充几个参数，然后再返回一个新的函数的技术，称为函数的柯里化。通常可用于在不侵入函数的前提下，为函数 **预置通用参数**，供多次重复调用。
 
 ```js
 const add = function add(x) {
@@ -492,7 +540,10 @@ const add = function add(x) {
 	}
 }
 
-add(1)(2)  // 3
+const add1 = add(1)
+
+add1(2) === 3
+add1(20) === 21
 ```
 
 ### 21. 数组(array)
@@ -522,11 +573,11 @@ arr.sort(function () {
 });
 ```
 
-- flat: [1,[2,3]] --> [1, 2, 3]
+- 数组拆解: flat: [1,[2,3]] --> [1, 2, 3]
 
 ```js
 arr.prototype.flat = function() {
-    this.toString().split(',').map(item=> +item )
+    this.toString().split(',').map(item => +item )
 }
 ```
 
@@ -534,10 +585,21 @@ arr.prototype.flat = function() {
 
 ### 1. 跨标签页通讯
 
-- `localStorage`与监听`storage`
-- `cookie`与`setInterval`
+不同标签页间的通讯，本质原理就是去运用一些可以 **共享的中间介质**，因此比较常用的有以下方法:
 
-### 2. 浏览器结构
+- 通过父页面`window.open()`和子页面`postMessage`
+	- 异步下，通过 `window.open('about: blank')` 和 `tab.location.href = '*'` 
+	
+- 设置同域下共享的`localStorage`与监听`window.onstorage`
+	- 重复写入相同的值无法触发
+	- 会受到浏览器隐身模式等的限制 
+	
+- 设置共享`cookie`与不断轮询脏检查(`setInterval`)
+
+- 借助服务端或者中间层实现
+
+### 2. 浏览器架构
+
 - 用户界面
 - 主进程 
 - 内核
@@ -551,9 +613,9 @@ arr.prototype.flat = function() {
 	- 网络异步线程
 	- 定时器线程
 
-### 3. Event Loop
+### 3. 浏览器下事件循环(Event Loop)
 
-一次事件循环是执行一个宏任务，然后执行清空微任务列表，循环再执行宏任务，再清微任务列表 
+事件循环是指: 执行一个宏任务，然后执行清空微任务列表，循环再执行宏任务，再清微任务列表 
 
 - 微任务 `microtask(jobs)`: `promise / ajax / Object.observe`
 - 宏任务 `macrotask(task)`: `setTimout / script / IO / UI Rendering`
@@ -562,22 +624,26 @@ arr.prototype.flat = function() {
 
 - DNS 解析 
 - TCP 三次握手
-- 发送请求，分析 URL，设置请求报文(头，主体)
+- 发送请求，分析 url，设置请求报文(头，主体)
 - 服务器返回请求的文件 (html)
 - 浏览器渲染
 	- HTML parser --> DOM Tree
-		- 标记化算法，进行状态的标记
+		- 标记化算法，进行元素状态的标记
 		- dom 树构建 
 	- CSS parser --> Style Tree
+		- 解析 css 代码，生成样式树 
 	- attachment --> Render Tree
-	- layout
-	- GPU painting
+		- 结合 dom树 与 style树，生成渲染树
+	- layout: 布局
+	- GPU painting: 像素绘制页面
 
 ### 5. 重绘与回流
 
-- **重绘(repaint)**: 当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时**损耗较少**
+当元素的样式发生变化时，浏览器需要触发更新，重新绘制元素。这个过程中，有两种类型的操作，即重绘与回流。
 
-- **回流(reflow)**: 当元素的尺寸、结构或触发某些属性时，浏览器会重新渲染页面，称为回流。会触发回流的操作: 
+- **重绘(repaint)**: 当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此 **损耗较少**
+
+- **回流(reflow)**: 当元素的尺寸、结构或触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。会触发回流的操作: 
 	- 页面初次渲染
 	- 浏览器窗口大小改变
 	- 元素尺寸、位置、内容发生改变
@@ -610,34 +676,235 @@ arr.prototype.flat = function() {
 
 ### 6. 存储
 
-- `cookie`: 通常用于存储用户身份，登录状态等
-	- http 中自动携带， 体积上限为 4K， 可自行设置过期时间
-- `localStorage / sessionStorage`: 长久储存/窗口关闭删除， 体积限制为 4~5M
-- `indexDB`
+我们经常需要对业务中的一些数据进行存储，通常可以分为 短暂性存储 和 持久性储存。
+
+- 短暂性的时候，我们只需要将数据存在内存中，只在运行时可用
+
+- 持久性存储，可以分为 浏览器端 与 服务器端
+	- 浏览器: 
+		- `cookie`: 通常用于存储用户身份，登录状态等
+			- http 中自动携带， 体积上限为 4K， 可自行设置过期时间
+		- `localStorage / sessionStorage`: 长久储存/窗口关闭删除， 体积限制为 4~5M
+		- `indexDB` 
+	- 服务器:
+		- 分布式缓存 redis
+		- 数据库 
 
 ### 7. Web Worker
 
-现代浏览器为`JavaScript`创造的 **多线程环境**。可以新建，并将部分任务分配到`worker`线程并行运行，两个线程可 **独立运行，互不干扰**，可通过自带的 **消息机制** 相互通信。
+现代浏览器为`JavaScript`创造的 **多线程环境**。可以新建并将部分任务分配到`worker`线程并行运行，两个线程可 **独立运行，互不干扰**，可通过自带的 **消息机制** 相互通信。
+
+**基本用法:**
+
+```js
+// 创建 worker
+const worker = new Worker('work.js');
+
+// 向主进程推送消息
+worker.postMessage('Hello World');
+
+// 监听主进程来的消息
+worker.onmessage = function (event) {
+  console.log('Received message ' + event.data);
+}
+```
+
+**限制:**
+
+- 同源限制
+- 无法使用 `document` / `window` / `alert` / `confirm`
+- 无法加载本地资源
 
 ### 8. V8垃圾回收机制
 
-- 首先执行**新生代算法**: 用于存活较短的对象
-	- Scavenge GC: 对象从 from space 转移到 to space (两个不同的空间)
-- **老生代算法**: 用于存活时间较长的对象
-	- 从新生代算法转移到老生代算法的条件
-		- 经历过 Scavenge GC 的对象
+垃圾回收: 将内存中不再使用的数据进行清理，释放出内存空间。V8 将内存分成 **新生代空间** 和 **老生代空间**。
+
+- **新生代空间**: 用于存活较短的对象
+	- 又分成两个空间: from 空间 与 to 空间 
+	- Scavenge GC算法: 当 from 空间被占满时，启动 GC 算法
+		- 存活的对象从 from space 转移到 to space
+		- 清空 from space
+		- from space 与 to space 互换
+		- 完成一次新生代GC
+- **老生代空间**: 用于存活时间较长的对象
+	- 从 新生代空间 转移到 老生代空间 的条件
+		- 经历过一次以上 Scavenge GC 的对象
 		- 当 to space 体积超过25%
-	- **标记清除算法**: 
-		- 增量标记: 小模块标记，在代码执行间隙执行
-		- 并发标记(2018): 不阻塞 js 执行
-	- **压缩算法**: 清除后导致的内存碎片化
+	- **标记清除算法**: 标记存活的对象，未被标记的则被释放
+		- 增量标记: 小模块标记，在代码执行间隙执，GC 会影响性能
+		- 并发标记(最新技术): 不阻塞 js 执行
+	- **压缩算法**: 将内存中清除后导致的碎片化对象往内存堆的一端移动，解决 **内存的碎片化**
 
 ### 9. 内存泄露
 
-- **全局变量** 无法被回收
-- **定时器** 与外部变量相互关系，导致外部变量无法被释放
-- **事件监听** 没有正确销毁 (低版本浏览器可能出现)
-- **闭包** 会导致父级中的变量无法被释放
+- 意外的**全局变量**: 无法被回收
+- **定时器**: 未被正确关闭，导致所引用的外部变量无法被释放
+- **事件监听**: 没有正确销毁 (低版本浏览器可能出现)
+- **闭包**: 会导致父级中的变量无法被释放
+- **dom 引用**: dom 元素被删除时，内存中的引用未被正确清空
+
+可用 chrome 中的 timeline 进行内存标记，可视化查看内存的变化情况，找出异常点。
+
+## 服务端与网络
+
+### 1. http/https 协议
+
+- 1.0 协议缺陷: 
+	- 无法复用链接，完成即断开，**重新慢启动和 TCP 3次握手**
+	- head of line blocking: **线头阻塞**，导致请求之间互相影响
+	
+- 1.1 改进: 
+	- **长连接**(默认 keep-alive)，复用
+	- host 字段指定对应的虚拟站点
+	- 新增功能:
+		- 断点续传
+		- 身份认证
+		- 状态管理
+		- cache 缓存
+			- Cache-Control
+			- Expires
+			- Last-Modified
+			- Etag
+		
+- 2.0:
+	- 多路复用
+	- 二进制分帧层: 应用层和传输层之间
+	- 首部压缩
+	- 服务端推送
+	
+- https: 较为安全的网络传输协议
+	- 证书(公钥)
+	- SSL 加密
+	- 端口 443
+
+- TCP:
+	- 三次握手
+	- 四次挥手
+	- 滑动窗口: 流量控制
+	- 拥塞处理
+		- 慢开始
+		- 拥塞避免
+		- 快速重传
+		- 快速恢复 
+
+- 缓存策略: 可分为 **强缓存** 和 **协商缓存**
+	- Cache-Control/Expires: 浏览器判断缓存是否过期，未过期时，直接使用强缓存，**Cache-Control的 max-age 优先级高于 Expires**
+	- 当缓存已经过期时，使用协商缓存
+		- 唯一标识方案: Etag(response 携带) & If-None-Match(request携带，上一次返回的 Etag): 服务器判断资源是否被修改，
+		- 最后一次修改时间: Last-Modified(response) & If-Modified-Since (request，上一次返回的Last-Modified)
+			- 如果一致，则直接返回 304 通知浏览器使用缓存
+			- 如不一致，则服务端返回新的资源
+		
+	- Last-Modified 缺点：
+		- 周期性修改，但内容未变时，会导致缓存失效
+		- 最小粒度只到 s， s 以内的改动无法检测到 
+	- Etag 的优先级高于 Last-Modified
+
+### 2. 常见状态码
+
+- 1xx: 接受，继续处理 
+- 200: 成功，并返回数据
+- 201: 已创建
+- 202: 已接受
+- 203: 成为，但未授权
+- 204: 成功，无内容
+- 205: 成功，重置内容
+- 206: 成功，部分内容
+- 301: 永久移动，重定向
+- 302: 临时移动，可使用原有URI
+- 304: 资源未修改，可使用缓存
+- 305: 需代理访问
+- 400: 请求语法错误
+- 401: 要求身份认证
+- 403: 拒绝请求
+- 404: 资源不存在
+- 500: 服务器错误
+
+### 3. get / post
+
+- get: 缓存、请求长度受限、会被历史保存记录
+	- 无副作用(不修改资源)，幂等(请求次数与资源无关)的场景 
+- post: 安全、大数据、更多编码类型
+
+两者详细对比如下图:
+
+<img width="600" src="./images/interview/3.png">
+
+### 4. Websocket
+
+Websocket 是一个 **持久化的协议**， 基于 http ， 服务端可以 **主动 push**
+
+- 兼容：
+	- FLASH Socket
+	- 长轮询： 定时发送 ajax
+	- long poll： 发送 --> 有消息时再 response
+
+- `new WebSocket(url)`
+- `ws.onerror = fn`
+- `ws.onclose = fn`
+- `ws.onopen = fn`
+- `ws.onmessage = fn`
+- `ws.send()`
+
+### 5. TCP三次握手
+
+建立连接前，客户端和服务端需要通过握手来确认对方:
+
+- 客户端发送 syn(同步序列编号) 请求，进入 syn_send 状态，等待确认
+- 服务端接收并确认 syn 包后发送 syn+ack 包，进入 syn_recv 状态
+- 客户端接收 syn+ack 包后，发送 ack 包，双方进入 established 状态
+
+### 6. TCP四次挥手
+
+- 客户端 -- FIN --> 服务端， FIN—WAIT
+- 服务端 -- ACK --> 客户端， CLOSE-WAIT
+- 服务端 -- ACK,FIN --> 客户端， LAST-ACK
+- 客户端 -- ACK --> 服务端，CLOSED
+
+### 7. Node 的 Event Loop: 6个阶段
+
+- timer 阶段: 执行到期的`setTimeout / setInterval`队列回调
+- I/O 阶段: 执行上轮循环残流的`callback`
+- idle, prepare
+- poll: 等待回调
+	- 1. 执行回调
+	- 2. 执行定时器
+		- 如有到期的`setTimeout / setInterval`， 则返回 timer 阶段
+		- 如有`setImmediate`，则前往 check 阶段
+- check
+	- 执行`setImmediate`
+- close callbacks
+
+### 跨域
+
+- JSONP: 利用`<script>`标签不受跨域限制的特点，缺点是只能支持 get 请求 
+
+```js
+function jsonp(url, jsonpCallback, success) {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.type = 'text/javascript'
+  window[jsonpCallback] = function(data) {
+    success && success(data)
+  }
+  document.body.appendChild(script)
+}
+```
+
+- 设置 CORS: Access-Control-Allow-Origin：*
+- postMessage
+
+### 安全
+
+- XSS攻击: 注入恶意代码
+	- cookie 设置 httpOnly
+	- 转义页面上的输入内容和输出内容 
+- CSPF: 跨站请求伪造，防护:
+	- get 不修改数据
+	- 不被第三方网站访问到用户的 cookie
+	- 设置白名单，不被第三方网站请求
+	- 请求校验 
 
 ## 框架：Vue
 
@@ -645,8 +912,9 @@ arr.prototype.flat = function() {
 
 在下次`dom`更新循环结束之后执行延迟回调，可用于获取更新后的`dom`状态
 
-- 默认使用`mincrotasks`, `v-on`使用`macrotasks`
-- `macrotasks`
+- 新版本中默认是`mincrotasks`, `v-on`中会使用`macrotasks`
+
+- `macrotasks`任务的实现:
 	- `setImmediate / MessageChannel / setTimeout`
 
 ### 2. 生命周期
@@ -664,10 +932,10 @@ arr.prototype.flat = function() {
 	- `mounted`: 组件已挂载
 
 - `update`:
-	- `re-vdom diff`
+	- 执行`diff`算法，比对改变是否需要触发UI更新
 	- `flushScheduleQueue`
-		- `watcher.before`: `beforeUpdate`组件更新			- `watcher.run()`: `watcher`触发更新
-	- `updated`: 组件已更新
+		- `watcher.before`: 触发`beforeUpdate`钩子		- `watcher.run()`: 执行`watcher`中的 `notify`，通知所有依赖项更新UI
+	- 触发`updated`钩子: 组件已更新
 	
 - `actived / deactivated(keep-alive)`: 不销毁，缓存，组件激活与失活
 	
@@ -675,9 +943,9 @@ arr.prototype.flat = function() {
 	- `beforeDestroy`: 销毁开始
 	- 销毁自身且递归销毁子组件以及事件监听
 		- `remove()`: 删除节点
-		- `watcher.teardown()`: 删除依赖
-		- `vm.$off()`: 删除监听
-	- `destroyed`: 完成后触发
+		- `watcher.teardown()`: 清空依赖
+		- `vm.$off()`: 解绑监听
+	- `destroyed`: 完成后触发钩子
 
 上面是`vue`的声明周期的简单梳理，接下来我们直接以代码的形式来完成`vue`的初始化
 
@@ -763,14 +1031,16 @@ Vue.prototype.$destory = function() {
 }
 ```
 	
-### 3. 数据响应
+### 3. 数据响应(数据劫持)
 
-- `Observe(观察者)`观察 props 与 state
-- 遍历 props 与 state，对每个属性进行响应性定义
-- 使用 `defineProperty` 重写每个属性的 get/set，(`defineReactive`）
+看完生命周期后，里面的`watcher`等内容其实是数据响应中的一部分。数据响应的实现由两部分构成: **观察者( watcher )** 和 **依赖收集器( Dep )**，其核心是 `defineProperty`这个方法，它可以 **重写属性的 get 与 set** 方法，从而完成监听数据的改变。
+
+- Observe (观察者)观察 props 与 state
+	- 遍历 props 与 state，对每个属性创建独立的监听器( watcher )
+- 使用 `defineProperty` 重写每个属性的 get/set(`defineReactive`）
 	- `get`: 收集依赖
 		- `Dep.depend()`
-		- `watcher.addDep()`
+			- `watcher.addDep()`
 	- `set`: 派发更新
 		- `Dep.notify()`
 		- `watcher.update()`
@@ -1049,148 +1319,6 @@ let reactiveData = new Proxy(data, {
 - `getters`: 获取状态
 - `modules`: 将`state`分成多个`modules`，便于管理
 
-## 服务端与网络
-
-### 1. http/https协议
-
-- 1.0 协议缺陷: 
-	- 无法复用链接，完成即断开，**重新慢启动和 TCP 3次握手**
-	- head of line blocking: 线头阻塞，导致请求之间互相影响
-	
-- 1.1 改进: 
-	- **长连接**(默认 keep-alive)，复用
-	- host 字段指定对应的虚拟站点
-	- 新增功能:
-		- 断点续传
-		- 身份认证
-		- 状态管理
-		- cache 缓存
-			- Cache-Control
-			- Expires
-			- Last-Modified
-			- Etag
-		
-- 2.0:
-	- 多路复用
-	- 二进制分帧层: 应用层和传输层之间
-	- 首部压缩
-	- 服务端推送
-	
-- https: 
-	- 证书(公钥)
-	- SSL 加密
-	- 端口 443
-
-- TCP:
-	- 三次握手
-	- 四次挥手
-	- 滑动窗口: 流量控制
-	- 拥塞处理
-		- 慢开始
-		- 拥塞避免
-		- 快速重传
-		- 快速恢复 
-
-- 缓存策略
-	- Cache-Control/Expires: 浏览器判断缓存是否过期，未过期时，直接使用强缓存，**Cache-Control的 max-age 优先级高于 Expires**
-	- 当缓存已经过期时，使用协商缓存
-		- 唯一标识方案: Etag(response 携带) & If-None-Match(request携带，上一次返回的 Etag): 服务器判断资源是否被修改，如果一致，则直接返回 304 通知浏览器使用缓存，如不一致，则服务端返回新的资源
-		- 最后一次修改时间: Last-Modified(response) & If-Modified-Since (request，上一次返回的Last-Modified)，逻辑如上
-		
-		- Last-Modified 缺点：
-			- 周期性修改，但内容未变时，会导致缓存失效
-			- 最小粒度只到 s， s 以内的改动无法检测到 
-		- Etag 的优先级高于 Last-Modified
-
-### 2. 常见状态码
-
-- 1xx： 接受，继续处理 
-- 200： 成功，并返回数据
-- 201： 已创建
-- 202： 已接受
-- 203： 成为，但未授权
-- 204： 成功，无内容
-- 205： 成功，重置内容
-- 206： 成功，部分内容
-- 301： 永久移动，重定向
-- 302： 临时移动，可使用原有URI
-- 304： 资源未修改，可使用缓存
-- 305： 需代理访问
-- 400： 请求语法错误
-- 401： 要求身份认证
-- 403： 拒绝请求
-- 404： 资源不存在
-- 500： 服务器错误
-
-### 3. get / post
-
-- get: 缓存、请求长度受限、会被历史保存记录
-	- 无副作用(不修改资源)，幂等(请求次数与资源无关)的场景 
-- post: 安全、大数据、更多编码类型
-
-<img width="600" src="./images/interview/3.png">
-
-### Websocket
-
-Websocket 是一个 **持久化的协议**， 基于 http ， 服务端可以 **主动 push**
-
-- 兼容：
-	- FLASH Socket
-	- 长轮询： 定时发送 ajax
-	- long poll： 发送 --> 有消息时再 response
-
-- `new WebSocket(url)`
-- `ws.onerror = fn`
-- `ws.onclose = fn`
-- `ws.onopen = fn`
-- `ws.onmessage = fn`
-- `ws.send()`
-
-### TCP三次握手
-
-- 客户端发送 syn(同步序列编号) 请求，进入 syn_send 状态，等待确认
-- 服务端接收并确认 syn 包后发送 syn+ack 包，进入 syn_recv 状态
-- 客户端接收 syn+ack 包后，发送 ack 包，双方进入 established 状态
-
-### TCP四次挥手
-
-- 客户端 -- FIN --> 服务端， FIN—WAIT
-- 服务端 -- ACK --> 客户端， CLOSE-WAIT
-- 服务端 -- ACK,FIN --> 客户端， LAST-ACK
-- 客户端 -- ACK --> 服务端，CLOSED
-
-### Node 的 Event Loop: 6个阶段
-
-- timer: 执行`setTimeout / setInterval`
-- I/O: 执行上轮循环残流的`callback`
-- idle, prepare
-- poll：等待回调
-	- 1. 执行回调
-	- 2. 执行定时器
-		- 如有`setTimeout / setInterval`， 则返回 timer 阶段
-		- 如有`setImmediate`，则前往 check 阶段
-- check
-	- 执行`setImmediate`
-- close callbacks
-
-### 跨域
-
-- JSONP
-- 设置 CORS: Access-Control-Allow-Origin：*
-- postMessage
-- document.domain
-
-### 安全
-
-- XSS攻击: 注入恶意代码
-	- cookie 设置 httpOnly
-	- 转义页面上的输入内容和输出内容 
-- CSPF: 跨站请求伪造
-	- get 不修改数据
-	- 不被第三方网站访问到用户的 cookie
-	- 设置白名单，不被第三方网站请求
-	- 请求校验 
-
 ## 算法
 
 ### 1. 五大算法
@@ -1335,8 +1463,8 @@ function cStairs(n) {
 
 ## 结语
 
-😂。不知道看到此的各位看官作何感想~反正我当时是觉得: 'shit! 复习真痛苦，什么都不会，要看的知识点无穷无尽'。不过为了工作，还是得沉下心来慢慢啃。
+😂。不知道看到此的各位看官作何感想~反正我当时是觉得: 'shit! 复习真痛苦，什么都不会，要看的知识点无穷无尽'。不过为了工作，还是得真香，沉下心来慢慢啃。
 
 其实在面试中，很多领域并没有真正的答案，能回答到什么样的深度，还是得靠自己真正的去使用和研究。知识面的广度与深度应该并行，尽量的拓张自己的领域，至少都有些基础性的了解，可以同面试官唠嗑两句，然后在自己喜欢的领域，又有着足够深入的研究，让面试官觉得你是这方面的专家。
 
-知识大纲还需要不断的完善和修正，也希望大家能一起参与进来。~~在编写的时候，其实也是对自己的归纳和总结。~~😉
+知识大纲还在不断的完善和修正，由于也是精力时间有限，我会慢慢补充后面列出来的部分。当然，我也是在整理中不断的学习，也希望大家能一起参与进来。在编写和疑问的时候，其实也是对自己的归纳和总结。~~😉

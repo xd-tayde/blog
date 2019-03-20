@@ -26,13 +26,13 @@ React 也是现如今最流行的前端框架，也是很多大厂面试必备�
 
 React 的核心流程可以分为两个部分: 
 
-- reconciliation (**调度算法**，也可称为 render)
+- reconciliation (**调度算法**，也可称为 render):
 	- 更新 state 与 props；
 	- 调用生命周期钩子；
 	- 生成 virtual dom；
 	- 通过新旧 vdom 进行 diff 算法，获取 vdom change；
 	- 确定是否需要重新渲染
-- commit
+- commit:
 	- 如需要，则操作 dom 节点更新；
 
 要了解 Fiber，我们首先来看为什么需要它？
@@ -99,13 +99,13 @@ React 的核心流程可以分为两个部分:
 
 其实该变动的原因，正是由于上述提到的 Fiber。首先，从上面我们知道 React 可以分成 reconciliation 与 commit 两个阶段，对应的生命周期如下:
 
-- reconciliation
+- **reconciliation**:
 	- `componentWillMount`
 	- `componentWillReceiveProps`
 	- `shouldComponentUpdate`
 	- `componentWillUpdate`
 
-- commit
+- **commit**:
 	- `componentDidMount`
 	- `componentDidUpdate`
 	- `componentWillUnmount`
@@ -143,7 +143,7 @@ class Component extends React.Component {
 }
 ```
 
-- 使用建议:
+- **使用建议**:
 	- 在`constructor`初始化 state；
 	- 在`componentDidMount`中进行事件监听，并在`componentWillUnmount`中解绑事件；
 	- 在`componentDidMount`中进行数据的请求，而不是在`componentWillMount`；
@@ -181,7 +181,7 @@ class Component extends React.Component {
 
 React 中用于修改状态，更新视图层。具有以下特点:
 
-> 事务 (Transaction): 是 React 中的一个调用结构，用于包装一个方法，结构为: initialize - perform(method) - close。通过事务，可以统一管理一个方法的开始与结束；处于事务流中，表示进程正在执行一些操作；
+> **事务** (Transaction): 是 React 中的一个调用结构，用于包装一个方法，结构为: initialize - perform(method) - close。通过事务，可以统一管理一个方法的开始与结束；处于事务流中，表示进程正在执行一些操作；
 
 - **异步与同步**: `setState`并不是单纯的异步或同步，这其实与调用时的环境相关:
 	- 在 **合成事件** 和 **生命周期钩子(除 componentDidUpdate)** 中，`setState`是"异步"的；
@@ -208,12 +208,12 @@ React 中用于修改状态，更新视图层。具有以下特点:
 
 HOC(Higher Order Componennt) 是在 React 机制下社区形成的一种组件模式，在很多第三方开源库中表现强大。
 
-- 简述:
+- **简述**:
 	- 高阶组件不是组件，是 **增强函数**，可以输入一个元组件，返回出一个新的增强组件；
 	- 高阶组件的主要作用是 **代码复用**，**操作** 状态和参数；
 
-- 用法: 
-	- 属性代理 (Props Proxy): 返回出一个组件，它基于被包裹组件进行 **功能增强**；
+- **用法**: 
+	- **属性代理 (Props Proxy)**: 返回出一个组件，它基于被包裹组件进行 **功能增强**；
 		- **默认参数**: 可以为组件包裹一层默认参数；
 		
 		```js

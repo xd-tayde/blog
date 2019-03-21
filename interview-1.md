@@ -8,7 +8,7 @@
 
 面试固然有技巧，但绝不是伪造与吹流弊，通过一段短时间沉下心来闭关修炼，出山收割，步入大厂，薪资翻番，岂不爽哉？🤓
 
-下篇已新鲜出炉，速速杀入 [面试下篇](https://github.com/xd-tayde/blog/blob/master/interview-2.md);
+中篇已新鲜出炉，速速杀入 [面试中篇](https://github.com/xd-tayde/blog/blob/master/interview-2.md);
 
 ## 修炼原则
 
@@ -1476,7 +1476,7 @@ function cStairs(n) {
 		- 不平衡，假币在天平上较轻的一组， 取其回到 1 继续循环
 ## 结语
 
-由于精力时间及篇幅有限，这篇就先写到这。大家慢慢来不急。。🤪。调整下心态，继续 [面试下篇](https://github.com/xd-tayde/blog/blob/master/interview-2.md);
+由于精力时间及篇幅有限，这篇就先写到这。大家慢慢来不急。。🤪。调整下心态，继续 [面试中篇](https://github.com/xd-tayde/blog/blob/master/interview-2.md);
 
 在面试中，很多领域并没有真正的答案，能回答到什么样的深度，还是得靠自己真正的去使用和研究。知识面的广度与深度应该并行，尽量的拓张自己的领域，至少都有些基础性的了解，在被问到的时候可以同面试官唠嗑两句，然后在自己喜欢的领域，又有着足够深入的研究，让面试官觉得你是这方面的专家。
 

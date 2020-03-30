@@ -14,7 +14,7 @@
 
 切换目录： `cd`+ 路径;
 
-建立新文件：`cd filename`;
+建立新文件：`touch filename`;
 
 拷贝文件：`cp -R /User/用户名/a /User/用户名/b/`;
 
